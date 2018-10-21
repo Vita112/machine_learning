@@ -1,4 +1,4 @@
-## what is machine learning?
+## 1.what is machine learning?
 + 机器学习的2种定义
 
 > Arthur Samuel： the field of study that gives computers the ability to learn 
@@ -26,5 +26,9 @@ unsupervised learning: let computer learn by itsself
 other algorithms like: reinforcement learning, recommender system.<br>
 more detailed definition of the above 2 algorithms is as follows:  
 
-## supervised learning
+## 2.supervised learning
+
++ 2.1 引例-房价预测
+
+![房价预测图](C:\Users\houjing.wei\machine learning_stanford_andrew Ng\chapter01)
 
