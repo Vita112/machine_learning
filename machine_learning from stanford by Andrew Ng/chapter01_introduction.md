@@ -10,6 +10,7 @@ Samuel编写了一个西洋棋程序(checkers playing program)，编程者自己
 
 > Tom Mitchell: a computer program is said to learn from experience E with respect to some task T and some performance measure P, if its performance on T, as measured by P, improves with experience E. 
 ( 一个程序被认为能从经验E中学习，解决任务 T，达到性能度量值P，当且仅当，有了经验E后，经过P评判， 程序在处理 T 时的性能有所提升)
+
 运用tom 的定义，我们可以这样来解释西洋棋程序：<br>
 E: the experience of having the program play games against itsself.
 T: play checkers
