@@ -30,5 +30,4 @@ more detailed definition of the above 2 algorithms is as follows:
 
 + 2.1 引例-房价预测
 
-![房价预测图](machine_learning/machine_learning from stanford by Andrew Ng/img/02_多特征分类问题.jpg)
-
+![房价预测](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/02_%E6%88%BF%E4%BB%B7%E9%A2%84%E6%B5%8B_%E5%9B%9E%E5%BD%92%E9%97%AE%E9%A2%98.jpg)
