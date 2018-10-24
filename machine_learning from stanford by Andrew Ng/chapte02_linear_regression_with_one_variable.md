@@ -1,10 +1,10 @@
-<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
+
 ## 1. Model Representation
 + 1.1 一个引例-预测房价
 
 假设我们有一个数据集，数据集包含某市的住房价格。使用这个数据集，我们画出一个 关于不同住房面积和与之对应的房价的 关系图。
 现在你的一个朋友有一个面积为a平米的房子想要出售，我们要做的是：如何预测朋友的房子将会卖多少钱？
-`通过监督学习算法， 我们可以使用数据集建立一个模型，根据模型来预测朋友房子的售价。`
+*通过监督学习算法， 我们可以使用数据集建立一个模型，根据模型来预测朋友房子的售价。*
 
 + 1.2 线性回归
 
@@ -21,9 +21,7 @@
 由于对于每一个输入值x来说，数据集都给出了准确的输出值y，通过观察x到y某种映射关系（使用学习算法学习），我们得到一个有关x，
 y的函数h（h=hypothesis）。到此我们可以说建立起了一个关于房屋面积和价格的模型，使用这个模型，可以得出给定输入值对应的输出值。<br>
 这个模型也被成为**线性回归模型:**
-```html
-{\color{Blue} h_{\theta } = \theta _{0}+\theta _{1}*x}
-```
+$$h_{\theta } (x) = \theta _{0} + \theta _{1} * x$$
     
 由于模型中只有一个变量x，又被称为`单变量线性回归`。    
-{\color{Blue} h_{\theta } = \theta _{0}+\theta _{1}*x}
+\frac{\partial f}{\partial x} = 2\,\sqrt{a}\,x
