@@ -42,7 +42,7 @@ $h_{\theta }(x)=\theta _{0}+\theta _{1}*x$,
 
 $Θ_i$ 是模型参数。每给出一对 $Θ_0$ 和 $Θ_1$ 的值，我们将得到一条直线拟合。我们的目标是：如何选择 $Θ_0$ 和 $Θ_1$ 得到最佳拟合直线，以使得输出变量y到假设函数 直线的垂直距离的和最小。<br>
 此处我们需要使用代价函数来求出最佳的$Θ_0$ 和 $Θ_1$:
-$J(\theta _{0})=\frac{1}{2m}\sum_{i=1}^{m}(\hat{y_{i}}-y_{i})^{2}$
+![cost function](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/cost_function_chapter02.gif)
 其中，m是样本数量。这个函数又被称为`squared error function` 或者`mean squared error`。除以2是为了梯度下降（gradient descent）,也有利于导数项的减少。
 + 单变量代价函数
 
