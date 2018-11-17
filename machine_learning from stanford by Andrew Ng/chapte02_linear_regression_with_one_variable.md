@@ -39,8 +39,8 @@ $$\displaystyle {\color{Blue} h_{\theta } = \theta _{0}+\theta _{1}*x}$$
 + reading materials 
 
 cost function用于评价假设函数(hypothesis function)的准确性,具体采用平方差的方式计算。在上一节中我们知道了假设函数为：
-$$\displaystyle {\color{Blue} h_{\theta } = \theta _{0}+\theta _{1}*x}$$，
-$Θ_i$是模型参数。每给出一对$Θ_0$和$Θ_1$的值，我们将得到一条直线拟合。*我们的目标是：如何选择$Θ_0$和$Θ_1$得到最佳拟合直线，以使得输出变量y到假设函数直线的垂直距离的和最小。*<br>
+$$\displaystyle {\color{Blue} h_{\theta } = \theta _{0}+\theta _{1}*x}$$
+$Θ_i$是模型参数。每给出一对$Θ_0$和$Θ_1$的值，我们将得到一条直线拟合。我们的目标是：如何选择$Θ_0$和$Θ_1$得到最佳拟合直线，以使得输出变量y到假设函数直线的垂直距离的和最小。<br>
 此处我们需要使用代价函数来求出最佳的$Θ_0$和$Θ_1$：
 $$J(\theta _{0},\theta _{1})=\frac{1}{2m}\sum_{i=1}^{m}(\hat{y_{i}}-y_{i})^{^{2}}=\frac{1}{2m}\sum_{i=1}^{m}(h_{\theta }(x_{i})-y_{i})^{2}$$
 
