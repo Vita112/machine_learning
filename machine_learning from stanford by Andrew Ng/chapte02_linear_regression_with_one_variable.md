@@ -32,28 +32,22 @@ input:x → function → output：predicated y
 代表一个训练样本。由于对于每一个输入值$x^{(i)}$来说，数据集都给出了准确的输出值$y^{(i)}$，通过观察X到Y某种映射关系（使用学习算法学习），我们得到一个有关x，y的函数h（h=hypothesis）。到此通过监督学习，我们可以说建立起了一个关于房屋面积和价格的模型，使用这个模型，可以得出给定输入值对应的输出值。<br>
 这个模型也被成为**线性回归模型（Linear Regression Model）:**
 $$\displaystyle {\color{Blue} h_{\theta } = \theta _{0}+\theta _{1}*x}$$
-    
 由于模型中只有一个变量x，又被称为`单变量线性回归`。 
 
 ## 2. Cost Function
 + reading materials 
 
 cost function用于评价假设函数(hypothesis function)的准确性,具体采用平方差的方式计算。在上一节中我们知道了假设函数为：
-
 $$\displaystyle {\color{Blue} h_{\theta } = \theta _{0}+\theta _{1}*x}$$,
 
 $Θ_i$ 是模型参数。每给出一对 $Θ_0$ 和 $Θ_1$ 的值，我们将得到一条直线拟合。我们的目标是：如何选择 $Θ_0$ 和 $Θ_1$ 得到最佳拟合直线，以使得输出变量y到假设函数 直线的垂直距离的和最小。<br>
 此处我们需要使用代价函数来求出最佳的$Θ_0$ 和 $Θ_1$:
-
-$$J(\theta _{0},\theta _{1})=\frac{1}{2m}\sum_{i=1}^{m}(\hat{y_{i}}-y_{i})^{^{2}}=\frac{1}{2m}\sum_{i=1}^{m}(h_{\theta }(x_{i})-y_{i})^{2}$$
-
+$$ J(\theta _{0},\theta _{1})=\frac{1}{2m}\sum_{i=1}^{m}(\hat{y_{i}}-y_{i})^{^{2}}=\frac{1}{2m}\sum_{i=1}^{m}(h_{\theta }(x_{i})-y_{i})^{2} $$
 其中，m是样本数量。这个函数又被称为`squared error function` 或者`mean squared error`。除以2是为了梯度下降（gradient descent）,也有利于导数项的减少。
 + 单变量代价函数
 
 为更直观的了解代价函数的作用和功能，我们先从简化的假设函数开始。我们假设 $Θ_0$ 为0，有
-
 $$\displaystyle {\color{Blue} h_{\theta } = \theta _{1}*x}$$，
-
-$$J(\theta _{1})=\frac{1}{2m}\sum_{i=1}^{m}(h_{\theta }(x_{i})-y_{i})^{2}$$，
+$$ J(\theta _{1})=\frac{1}{2m}\sum_{i=1}^{m}(h_{\theta }(x_{i})-y_{i})^{2}$$，
 
 现在我们开始对 $Θ_1$ 进行取值，分别画出假设函数h(x)和代价函数J(θ1)的函数。
