@@ -127,7 +127,7 @@ use gradient discent to get the minimun of cost function J($θ_0$,$θ_1$)，to e
  
  也就是是说，将不断重复
  
- $$\theta _{j}:=\theta _{_{j}}-\alpha \frac{\partial J(\theta _{0},\theta _{1}))}{\partial \theta _{j}}$$
+ $$\theta _{j}:=\theta _{j}-\alpha \frac{\partial J(\theta _{0},\theta _{1}))}{\partial \theta _{j}}$$
  
  直到收敛，过程中不断更新参数θj，j=0，1.
  ```
