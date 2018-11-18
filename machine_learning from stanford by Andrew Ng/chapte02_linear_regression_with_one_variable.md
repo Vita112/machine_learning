@@ -146,3 +146,20 @@ use gradient discent to get the minimun of cost function J($θ_0$,$θ_1$)，to e
 
    $θ_1$：=$θ_1$ - α$\frac{\det J(\theta _{1})}{\det \theta _{1}}$
 
+每使用一次$\frac{\det J(\theta _{1})}{\det \theta _{1}}$对$θ_1$求导一次，就更新$θ_1$的值。求导后的值有两种情况：当为负数时，更新后的$θ_1$的值将增大；当为正数时，$θ_1$的值将减小。总之，在不断的更新调整中，最终我们得到一个$θ_1$使得J($θ_1$)的值最小。当α(learning rate)太小，梯度下降将很慢；当α太大，我们有可能跳过最小值点，导致无法收敛，甚至是分散。<br>
+当$θ_1$的初始值在一个局部最低点，此处求导后得到0，因此，此时$θ_1$不会更新。它使你的解始终保持在局部最优点。<br>**as we approach a local minimum, gradient descent will automatically take smaller steps.so no need to decrease α over time.* *这是因为在θ1不断接近最低点的过程中，导数是越来越接近0的。就是说随着梯度下降法的运行，$θ_1$移动的幅度会`自动地`变得越来越小，直到最后收敛到局部极小值。<br>下图说明了这样一个过程：
+
+![converge to a local minimum while taking smaller step automatically](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/converge%20to%20a%20local%20minimum%20while%20taking%20smaller%20step%20automatically.png)
+接下来，将回到代价函数的本质，即之前所讲的`平方误差函数`，结合梯度下降法，得到机器学习的`第一个算法`——**线性回归算法**。
+
+### 3.2 gradient descent for linear regression
++ gradient descent algorithm and linear regression modle
+
+![gradient descent algorithm and linear regression modle]()
+
+接下来，我们将梯度下降法应用到代价函数中，最小化`平方误差代价函数`。先看微分项$\frac{\partial }{\partial \theta _{j}}J(\theta _{0},\theta _{1})$
+
+$$=\frac{\partial \frac{1}{2m}\sum_{i=1}^{m}(h_{\theta}(x^{(i)})-y^{(i)})^{2}}{\partial \theta _{j}}$$
+
+当j=0, $\theta _{0}:=\theta _{0}-\alpha \frac{\partial }{\partial \theta _{0}}J(\theta _{0},\theta _{1})=\theta _{0}-\alpha\frac{1}{m}\sum_{i=1}^{m}(h_{\theta }(x^{(i)})-y^{(i)})$<br>
+当j=1，$θ_1$ = $θ_1$ - $\frac{\partial }{\partial \theta _{j}}J(\theta _{0},\theta _{1})$ = $\frac{1}{m}\sum_{i=1}^{m}(h_{\theta }(x^{(i)})-y^{(i)})\cdot x^{(i)}$
