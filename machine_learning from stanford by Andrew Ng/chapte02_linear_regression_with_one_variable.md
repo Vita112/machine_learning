@@ -35,7 +35,7 @@ $$h_{\theta }(x)=\theta _{0}+\theta _{1}*x$$
 由于模型中只有一个变量x，又被称为`单变量线性回归`。 
 
 ## 2. Cost Function
-+ reading materials 
++ cost function 
 
 cost function用于评价假设函数(hypothesis function)的准确性,具体采用平方差的方式计算。在上一节中我们知道了假设函数为：
 $h_{\theta }(x)=\theta _{0}+\theta _{1}*x$,
@@ -59,6 +59,10 @@ $h_{\theta }(x)=x$, $h_{\theta }(x_{i})=y_{i}$,
 $J(1)$=0.
 在$J(θ_1)$的图像中，横轴代表θ1，于是我们在(1,0)画一个点。如下图：
 
+![θ1=1](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/%CE%B8%3D1.png)
+
+当θ1=0时，如下图：
+
 ![θ1=0](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/%CE%B8%3D0.png)
 
 当θ1=0.5时，
@@ -71,4 +75,27 @@ $h_{\theta }(x)=0.5x$, $0.5x_{i}=y_{i}$,如下图：
 
 ![θ1=-0.5](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/%CE%B8%3D-0.5.png)
 
-继续的，我们可以给θ1赋很多值，以得到$J(θ_1)$的函数图像，得出代价函数的最小值，相应的，我们以此时的$θ_1$为斜率画出的直线就是我们要求的最佳拟合直线。
+继续的，我们可以给θ1赋很多值，以得到$J(θ_1)$的函数图像，
+![J(θ1)的图像](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/3%E4%B8%AA%CE%B8%E7%9A%84%E5%8F%96%E5%80%BC%E5%AF%B9%E5%BA%94%E7%9A%84%E6%8B%9F%E5%90%88%E7%9B%B4%E7%BA%BF.png)
+得出代价函数的最小值，相应的，我们以此时的$θ_1$为斜率画出的直线就是我们要求的最佳拟合直线。
++ cost function J($θ_0$,$θ_1$)
+
+当代价函数有两个参数时，假设函数是一条不通过原点的直线，我们的任务仍然是最小化 J($θ_0$,$θ_1$)，找到那条最佳拟合直线。下图显示了我们用到的函数和参数：
+
+![functions and parameters](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/functions%20and%20parameters.png)
+
+由于代价函数有两个参数，因此我们绘制出其图像为一个三维曲面，如下图所示，
+
+![J(θ0,θ1)](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/J(%CE%B80%EF%BC%8C%CE%B81).png)
+
+在三维曲面上，我们并不容易直观的找到最小的J($θ_0$,$θ_1$)，为更直观的观察J($θ_0$,$θ_1$)的变化，我们使用contour plots，于是hθ(x)和J($θ_0$,$θ_1$)的图像可以表示如下：
+
+![J(contour plots)](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/contour_plots.png)
+
+图中右侧称为轮廓图，上面标出的紫色的三个点表示J($θ_0$,$θ_1$)值相同。轮廓图有一圈圈的椭圆形构成，每一个圈表示J(θ0,θ1)相同的所有点的集合。我们要找的最小值因该是轮廓图的 一系列同心椭圆形的中心点。图中红色的点的θ0=800，θ=-0.15(大约)，对应左边的蓝色直线，很显然这并不是最优拟合直线，这个点离轮廓图的中心点也远。下图已经十分接近最小点了。
+
+![close to minimizeJ(θ0,θ1)](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/close%20to%20minimizeJ(%CE%B80%2C%CE%B81).png)
+
+以上的图形帮助哦我们直观的了解了假设函数和代价函数。以及如何找到J($θ_0$,$θ_1$)的最小值，得到最佳拟合直线。
+下一题视频中，讲介绍一种学习算法，自动找出能使代价函数最小化的参数θ0和θ1的值。
+
