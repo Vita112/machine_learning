@@ -168,3 +168,29 @@ $$=\frac{\partial \frac{1}{2m}\sum_{i=1}^{m}(h_{\theta}(x^{(i)})-y^{(i)})^{2}}{\
 当j=1，
 
 ![θ1 of gradient descent](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/%CE%B81%20of%20gradient%20descent.gif)
+
+Then update $θ_0$ and $θ_1$ simultaneously, and the follow is our linear regression algorithm. 最初讲到梯度下降算法时，我们使用了这张图片：
+ 
+ ![graph of J(θ0,θ1)](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/graph%20of%20J(%CE%B80%2C%CE%B81).png)
+ 
+As we repeatedly apply these gradient descent equations, our hypothesis will become more and more accurate.这张图中，不同的初始值参数，我们将得到不同的局部极小值。但是，在线性回归中的代价函数总是一个`凸函数(convex function, a bowl shaped function)`，因此`其局部极小值(local minimum)就是全局最小值(global minimum)`。我们把求解最优化问题(optimization problem)想象称 往一个曲面上扔一颗弹珠，在凸曲面中，无论弹珠最开始落在哪一点上，最终都会滚到曲面的最低点。
+``` 
+判断一个函数是否为凸函数，可以通过连接函数图像上的任意两点形成一条直线，如果该直线与函数没有交点，就是凸函数；否则，为非凸函数。比如y= x^2
+但，上述定义同样适用于凹函数。因此数学家给出了如下更严格的定义：
+如果函数上镜图(epigraph)-函数曲线上的点和函数曲线上方所有点的集合，是凸集，那么该函数就是凸函数。
+如何理解凸集？
+在欧几里得空间中，凸集表示一个区域，区域内任意两点之间的线段都包含在该区域内。（wikipedia）例如，圆形和三角形是凸集，而五角星不是。
+如何判定？
+将函数想象成一个U行容器，往内灌水，一直加水一直达到容器的最高点(即函数极限),获取上镜图。若函数上镜图是凸的，则该函数是凸函数。
+```
+
+picture for demonstration
+
+![demonstration for linear regression algorithm using gradient descent](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/demonstration%20for%20linear%20regression%20algorithm%20using%20gradient%20descent.png)
+
++ 'batch' gradient descent
+
+In this course, every step of gradient descent, we're using all of the training examples.This is called `Batch gradient descent`当我们计算偏导数时，我们计算的是一个`和`。<br>
+但实际上，梯度下降也有其他版本，比如有一些并不使用整个trainning set，而是一次使用trainning set 的 small subset。这在之后的课中会讲到。<br>
+other method to get the minimum of cost function:**the normal equations(标准方程式)**,but
+gradient descent will scale better to large datasets than normal equations
