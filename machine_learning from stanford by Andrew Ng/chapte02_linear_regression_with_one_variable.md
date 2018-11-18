@@ -55,9 +55,20 @@ $J(\theta _{1})$
 $$=\frac{1}{2m}\sum_{i=1}^{m}(\hat{y_{i}}-y_{i})^{^{2}}=\frac{1}{2m}\sum_{i=1}^{m}(h_{\theta }(x_{i})-y_{i})^{2}$$
 现在我们开始对 $Θ_1$ 进行取值，分别画出假设函数h(x)和代价函数J($θ_1$)的函数。假设我们的训练样本中包含了3个点，即(1,1) (2,2) (3,3)，当θ1=1时，
 
-$h_{\theta }(x)=x$, $h_{\theta }(x_{i})=y_{i}$, $J(θ_1)$=0.
-在$J(θ_1)$的图像中，横轴代表θ1，于是我们在(1,0)画一个点。当θ1=0.5时，
+$h_{\theta }(x)=x$, $h_{\theta }(x_{i})=y_{i}$, 
+$J(1)$=0.
+在$J(θ_1)$的图像中，横轴代表θ1，于是我们在(1,0)画一个点。如下图：
 
-$h_{\theta }(x)=0.5x$, $0.5(x_{i})=y_{i}$,
+![θ1=0](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/%CE%B8%3D0.png)
 
+当θ1=0.5时，
 
+$h_{\theta }(x)=0.5x$, $0.5x_{i}=y_{i}$,如下图：
+
+![θ1=0.5](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/%CE%B8%3D0.5.png)
+
+当θ1=-0.5时，假设函数斜率为负，函数单调递减。如下图：
+
+![θ1=-0.5](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/%CE%B8%3D-0.5.png)
+
+继续的，我们可以给θ1赋很多值，以得到$J(θ_1)$的函数图像，得出代价函数的最小值，相应的，我们以此时的$θ_1$为斜率画出的直线就是我们要求的最佳拟合直线。
