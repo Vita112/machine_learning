@@ -7,3 +7,6 @@ $\theta _{j}:=\theta _{j}-\alpha \frac{\partial J(\theta _{0},\theta _{1}))}{\pa
 $$\theta _{_{j}}-$$
 
 $$\alpha \frac{\partial J(\theta _{0},\theta _{1}))}{\partial \theta _{j}}$$
+
+
+$$\frac{\partial}{\partial \theta _{j}}\frac{1}{2m}\sum_{i=1}^{m}(h_{\theta }(x^{i})-y^{i})^{2}$$
