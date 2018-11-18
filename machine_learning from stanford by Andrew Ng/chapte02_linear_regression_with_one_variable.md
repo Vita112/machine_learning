@@ -162,7 +162,9 @@ use gradient discent to get the minimun of cost function J($θ_0$,$θ_1$)，to e
 $$=\frac{\partial \frac{1}{2m}\sum_{i=1}^{m}(h_{\theta}(x^{(i)})-y^{(i)})^{2}}{\partial \theta _{j}}$$
 
 当j=0, 
+
 ![θ0 of gradient descent](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/%CE%B80%20of%20gradient%20descent.gif)
+
 当j=1，
 
 ![θ1 of gradient descent](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/%CE%B81%20of%20gradient%20descent.gif)
