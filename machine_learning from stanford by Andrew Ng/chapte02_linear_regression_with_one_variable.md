@@ -159,7 +159,7 @@ use gradient discent to get the minimun of cost function J($θ_0$,$θ_1$)，to e
 
 接下来，我们将梯度下降法应用到代价函数中，最小化`平方误差代价函数`。先看微分项$\frac{\partial }{\partial \theta _{j}}J(\theta _{0},\theta _{1})$
 
-$$=\frac{\partial }{\partial \theta _{j}}\frac{1}{2m}\sum_{i=1}^{m}(h_{\theta }(x^{i})-y^{i})^{2}$$
+$$=\frac{\partial \frac{1}{2m}\sum_{i=1}^{m}(h_{\theta}(x^{(i)})-y^{(i)})^{2}}{\partial \theta _{j}}$$
 
-当j=0,$θ_0$ = $θ_0$ - $\frac{\partial }{\partial \theta _{j}}J(\theta _{0},\theta _{1})$ = $\frac{1}{m}\sum_{i=1}^{m}(h_{\theta }(x^{(i)})-y^{(i)})$<br>
+当j=0, $\theta _{0}:=\theta _{0}-\alpha \frac{\partial }{\partial \theta _{0}}J(\theta _{0},\theta _{1})=\theta _{0}-\alpha\frac{1}{m}\sum_{i=1}^{m}(h_{\theta }(x^{(i)})-y^{(i)})$<br>
 当j=1，$θ_1$ = $θ_1$ - $\frac{\partial }{\partial \theta _{j}}J(\theta _{0},\theta _{1})$ = $\frac{1}{m}\sum_{i=1}^{m}(h_{\theta }(x^{(i)})-y^{(i)})\cdot x^{(i)}$
