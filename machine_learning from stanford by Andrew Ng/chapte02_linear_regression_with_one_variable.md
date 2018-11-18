@@ -107,7 +107,7 @@ use gradient discent to get the minimun of cost function J($θ_0$,$θ_1$)，to e
    
 事实上，梯度下降算法可应用于更一般的函数，比如cost function可以取多个参数，n=0，1，2，3，……n，求出J(θ0，θ1，……，θn)的最小值。为简洁起见，以下只讲2个参数的情况，构想如下:
 >  _outline:_<br>
-   start with some θ0，θ1
+   start with some θ0，θ1<br>
    keep changing θ0，θ1 to reduce J($θ_0$,$θ_1$) until we hopefully end up at a minimum
  
 首先初始化θ0和θ1，比如使他们都等于0；然后一点点改变θ0和θ1，以使得J($θ_0$,$θ_1$)变小，直到找到J的最小值(可能是局部最小值)。
@@ -129,10 +129,11 @@ use gradient discent to get the minimun of cost function J($θ_0$,$θ_1$)，to e
  
  $$\theta _{j}:=\theta _{j}-\alpha \frac{\partial J(\theta _{0},\theta _{1}))}{\partial \theta _{j}}$$
  
- 直到收敛，过程中不断更新参数θj，j=0，1.
+ 直到收敛，过程中不断更新参数θj，j=0，1,represents the feature index number.(j is a iteration)
  ```
- 符号:=表示赋值(assignment),是一个赋值运算符。
- 符号=表示声明(truth assetion).α是一个数字，表示学习速率(learning rate)，控制我们下山买多大的步子。
+ 符号:=表示赋值(assignment),是一个赋值运算符。符号=表示声明(truth assetion).
+ α是一个数字，表示学习速率(learning rate)，控制我们以多大的幅度更新参数θj。
+ the partial derivative of J(θ0,θ1) determine the direction in which the step is taken
  ```
 **one subtlety about gradient descent-update simultaneously**
 
@@ -140,3 +141,8 @@ use gradient discent to get the minimun of cost function J($θ_0$,$θ_1$)，to e
 ![update θj simultaneously](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/update%20%CE%B8j%20simultaneously.png)
 
 下一小节进入公式的微分项中，计算这个微分项。
+### 3.1 gradient descent intuition
++ minJ($θ_1$),$θ_1$∈R
+
+   $θ_1$：=$θ_1$ - α$\frac{\det J(\theta _{1})}{\det \theta _{1}}$
+
