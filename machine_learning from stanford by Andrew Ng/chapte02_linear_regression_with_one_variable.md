@@ -99,3 +99,42 @@ $h_{\theta }(x)=0.5x$, $0.5x_{i}=y_{i}$,如下图：
 以上的图形帮助哦我们直观的了解了假设函数和代价函数。以及如何找到J($θ_0$,$θ_1$)的最小值，得到最佳拟合直线。
 下一题视频中，讲介绍一种学习算法，自动找出能使代价函数最小化的参数θ0和θ1的值。
 
+##3. Gradient descent
+use gradient discent to get the minimun of cost function J($θ_0$,$θ_1$)，to estimate the parameters of the hypothesis function 
+ 梯度下降算法不仅用于线性回归，它广泛应用于机器学习的其他方面。下面讲述使用梯度下降算法最小化代价函数J。下面是问题概述：
+ > have some function J($θ_0$,$θ_1$)<br>
+   want minJ($θ_0$,$θ_1$)<br>
+   
+事实上，梯度下降算法可应用于更一般的函数，比如cost function可以取多个参数，n=0，1，2，3，……n，求出J(θ0，θ1，……，θn)的最小值。为简洁起见，以下只讲2个参数的情况，构想如下:
+>  _outline:_<br>
+   + start with some θ0，θ1
+   + keep changing θ0，θ1 to reduce J($θ_0$,$θ_1$) until we hopefully end up at a minimum
+ 
+ 首先初始化θ0和θ1，比如使他们都等于0；然后一点点改变θ0和θ1，以使得J($θ_0$,$θ_1$)变小，直到找到J的最小值(可能是局部最小值)。
+ + 梯度下降算法如何工作
+ 
+ ![graph of J(θ0,θ1)](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/graph%20of%20J(%CE%B80%2C%CE%B81).png)
+ 
+ 上面的三维曲面图可以看作一个公园中的两座山，现在我们在坐标所在位置，我们要做的是：360°环顾四周，选择一个方向，能够使我们迈着步子快速的走到山底。<br>
+ *选择每一步走多长，朝什么方向移动？*<br>
+ 起始点的选择会影响局部最小值。如下图：
+ 
+![different local minimum](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/different%20local%20minimum.png)
+
+++ 梯度下降算法定义如下：
+
+![gradient descent algorithm](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/gradient%20descent%20algorithm.png)
+ 
+ 也就是是说，将不断重复
+ $$\theta _{j}:=\theta _{_{j}}-\alpha \frac{\partial J(\theta _{0},\theta _{1}))}{\partial \theta _{j}}$$
+ 
+ 直到收敛，过程中不断更新参数θj，j=0，1.
+ ```
+ 符号:=表示赋值(assignment),是一个赋值运算符。符号=表示声明(truth assetion).α是一个数字，表示学习速率(learning rate)，控制我们下山买多大的步子。
+ ```
+++ one subtlety about gradient descent-update
+
+需要同时更新θ0和θ1，计算公式的右边部分，赋值到左边，同时更新θ0和θ1.使用temp·来储存计算结果，同时赋值给θj。下图是两种更新方式：
+![update θj simultaneously](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/update%20%CE%B8j%20simultaneously.png)
+
+下一小节进入公式的微分项中，计算这个微分项。
