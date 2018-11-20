@@ -1,5 +1,5 @@
 # machine_learning
-+ machine_learning from stanford by Andrew Ng
+## machine_learning from stanford by Andrew Ng
 
 link:https://www.coursera.org/learn/machine-learning/
     
