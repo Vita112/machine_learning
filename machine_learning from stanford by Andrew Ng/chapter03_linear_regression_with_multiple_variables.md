@@ -2,7 +2,7 @@
 + hypothesis and cost function
 
 hypothesis: 
-![hypothesis_for_multiple_variables]()
+![hypothesis_for_multiple_variables](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/hypothesis_for_multiple_variables.gif)
 
 parameters: $$\theta _{0},\theta _{1},\cdots ,\theta _{n}$$
 
@@ -21,9 +21,7 @@ repeat {
     }              (simultaneously update for every j=0,……,n)
 
 下面这张图片显示，即使是多于2个参数的情况下，他们的梯度算法其实是同一件事请。
-![gradient_descent_for_multivariables]()
-
-
+![gradient_descent_for_multivariables](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/gradient_descent_for_multivariables.png)
 + 梯度下降算法中的实用技巧1-feature scaling
 
 **idea:** make sure features are on a similar scale
