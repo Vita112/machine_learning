@@ -1,7 +1,8 @@
 ## gradient descent for multiple variables
 + hypothesis and cost function
 
-hypothesis: $$h_{\theta }(x)= \mathbf{\theta }^\mathrm{T}x=\theta _{0}x_{0}+\theta _{1}x_{1}+\cdots +\theta _{n}x_{n}$$
+hypothesis: 
+![hypothesis_for_multiple_variables]()
 
 parameters: $$\theta _{0},\theta _{1},\cdots ,\theta _{n}$$
 
@@ -14,5 +15,5 @@ cost function: $$J(\theta _{0},\theta _{1},\cdots ,\theta _{n})=\frac{1}{2m}\sum
 + gradient descent
 
 repeat {
-    $\theta _{j}:=\theta _{j}-\alpha \frac{\partial J(\theta _{0},\cdots ,\theta _{n})}{\partial \theta _{j}}$
+    $$\theta _{j}:=\theta _{j}-\alpha \frac{\partial J(\theta _{0},\cdots ,\theta _{n})}{\partial \theta _{j}}$$
     }              (simultaneously update for every j=0,……,n)
