@@ -6,7 +6,9 @@ hypothesis:
 
 parameters: $$\theta _{0},\theta _{1},\cdots ,\theta _{n}$$
 
-cost function: $$J(\theta _{0},\theta _{1},\cdots ,\theta _{n})=\frac{1}{2m}\sum_{i=1}^{m}(h_{\theta }(x^{(i)})-y^{(i)})^{2}$$
+cost function: $J(\theta _{0},\theta _{1},\cdots ,\theta _{n})$
+
+$$=\frac{1}{2m}\sum_{i=1}^{m}(h_{\theta }(x^{(i)})-y^{(i)})^{2}$$
 
 
 我们约定x0=1，把参数θ0，θ1，……θn当作一个`n+1`维的向量(n+1 dimensional vector),把$$J(\theta _{0},\theta _{1},\cdots ,\theta _{n})$$看作 以
