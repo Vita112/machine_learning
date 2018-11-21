@@ -17,4 +17,4 @@ $h_{\theta }(x)$
 
 $$= \mathbf{\theta }^\mathrm{T}x$$
 
-$$=\theta _{0}x_{0}+\theta _{1}x_{1}+\cdots +\theta _{n}x_{n}$$
+$$=\theta _{0}x_{0}+\theta _{1}x_{1}+\theta _{n}x_{n}$$
