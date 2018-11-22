@@ -39,7 +39,8 @@ $$x_{i}=\frac{x_{i}-\mu _{i}}{s}$$
 learning rate 是梯度下降算法的更新规则。在选好数据，设置好参数，运行梯度算法时，learning rate α其实可以看做是一种调试手段，帮助我们确认梯度算法是否工作正常。接下来将通过例子来看learning rate 具体是如何工作的。<br>
 下图是**关于代价函数J(Θ)和 a number of iterations of gradient descent的图像**，即代价函数随着迭代步数的增加而变化的曲线图，通过观察，可以判断算法是否已经收敛.
  
- ![关于代价函数J(Θ)和 a number of iterations of gradient descent的图像]()
+ ![关于代价函数J(Θ)和 a number of iterations of gradient descent的图像](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/%E5%85%B3%E4%BA%8E%E4%BB%A3%E4%BB%B7%E5%87%BD%E6%95%B0J(%CE%98)%E5%92%8C%20a%20number%20of%20iterations%20of%20gradient%20descent%E7%9A%84%E5%9B%BE%E5%83%8F.png)
+ 
  其中纵轴代表J(Θ)的值， x轴代表算法迭代次数。 比如在运行100步后我将得到一个$Θ_j$值，不管这个$Θ_j$的是多少，我们画出他对应的J(Θ)的值，同样在运行200次后，也会得到一个J(Θ)的值。所以这条曲线显示的是`梯度下降算法迭代过程中，代价函数J(Θ)的值`,如果**算法正常工作，则每一步迭代之后，J(Θ)的值都应该下降，也就是说曲线应该是单调递减的。**当曲线逐渐趋于平坦时，表示算法基本已经**收敛**了。<br>
 *对于特定的问题，梯度算法的迭代次数可以相差很大。我们提前很难判断需要多少次迭代。*<br>
 **如何选择合适的learning rate？**<br>
@@ -59,10 +60,12 @@ to choose α，try
 
 在多变量线性回归中，我们的假设函数为
 ![hypothesis_for_multiple_variables](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/hypothesis_for_multiple_variables.gif)
+
 可以看到，我们有多个特征、多个参数，此时一次线性函数已经无法很好的拟合我们的数据，于是我们考虑使用二次函数模型(quadratic function model)，但是随着观察拟合结果的变化，我们发现二次函数最终会降下来，但在我们这次的问题中，我们并不认为房子的价格在高到一定程度后会降下来。那我们在增加一项，使模型变为一个三次函数模型(cubic function model)，假设函数中包含一个三次方项(a  third-order term),此时拟合后的曲线是这样一条曲线。
 ![cubic function model](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/cubic%20function%20model.png)
 
->我们选择什么样的模型对数据进行拟合，取决于我们想要解决什么样的具体问题，并且针对特定的问题，当你选择不同的角度来审视问题时，所选的特征(数据)也会产生差异。有时，也可以**自定义新的特征**，以帮助我们获得更好的模型。<br
+>我们选择什么样的模型对数据进行拟合，取决于我们想要解决什么样的具体问题，并且针对特定的问题，当你选择不同的角度来审视问题时，所选的特征(数据)也会产生差异。有时，也可以**自定义新的特征**，以帮助我们获得更好的模型。
+
 **如何将模型与数据进行拟合？  答案是 使用多元线性回归的方法**<br>
     对我们的算法做一个简单的修改。比如之前的算法中，h(Θ)= Θ0 + Θ1x_1 + Θ2x_2 +Θx_3（x_1为房子的面积） ，我们对其进行修改，使得x_1为房子的面积，x_2为房子面积的平方，x_3为房子面积的立方。更改后的式子与原式是相等的（**这里需要理解一下为什么相等**）。再应用线性回归的方法，我们得到一个模型，可以用它来拟合我们的数据。当使用这种方法时，特征范围十分大时，因此必须对数据进行**归一化处理**后，再使用梯度下降法来找到J(Θ)的最小值。归一化处理将各特征值变得具有可比性。<br>
 **如何找到我们有意义的特征**<br>
@@ -80,8 +83,8 @@ to choose α，try
 
 ![examples_for_normal_equation](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/examples_for_normal_equation.png)
 
-**Octave syntax: pinv(X'*X)*X'*y**<br>
-在上图的例子中，我们有`n features and m training set`，我们默认$x_i_0$=1，建立一个特征值矩阵X，它是一个m*(n+1)的矩阵，一个输出值向量y(m-dimentional vector).使用正规方程法的公式，我们可以一次得到最小化J(θ)的θ值。
+**Octave syntax: pinv(X'*X)*X'*y**
+在上图的例子中，我们有`n features and m training set`，我们默认$x_0$=1，建立一个特征值矩阵X，它是一个m*(n+1)的矩阵，一个输出值向量y(m-dimentional vector).使用正规方程法的公式，我们可以一次得到最小化J(θ)的θ值。
 + 如何获得矩阵X
 
 下图展示了如何设计矩阵X：
@@ -92,7 +95,7 @@ to choose α，try
 ![comparison_of_gradient_descent_and_normal_equation](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/comparison_of_gradient_descent_and_normal_equation.png)
 
 
-图片中的O(k$n^2$),O($n^3$)可以理解为算法的时间复杂度(关于什么是算法的时间复杂度，可以*[参考这篇博文](https://blog.csdn.net/quiet_boy/article/details/53635774)).由于矩阵$$(\mathbf{X}^\mathrm{T}X)^{-1}$$是一个`n*n`矩阵，实现
+图片中的O(k$n^2$),O($n^3$)可以理解为算法的时间复杂度(关于什么是算法的时间复杂度，可以[参考这篇博文](https://blog.csdn.net/quiet_boy/article/details/53635774).由于矩阵$$(\mathbf{X}^\mathrm{T}X)^{-1}$$是一个`n*n`矩阵，实现
 矩阵计算所需要的计算量大致是矩阵维度的三次方，也就是O($n^3$)。因此，当n的值非常大时，计算这个矩阵会很慢，正规方程法将会很慢。当n=1000时，
 使用normal equation会是一个好的方法；但是，当n=10000时，使用gradient descent 方法会是更优的选择。
 ### 2.2 normal equation nonivertibility(正规方程及其不可逆性)
