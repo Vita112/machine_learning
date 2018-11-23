@@ -19,8 +19,8 @@
    在逻辑回归中，假设函数hθ(x)的值总是在区间\[0,1]。逻辑回归的名字可能有点迷惑，因为名字中含有`regression`，但这只是由一些
    历史问题造成的。它实际上是一个分类算法。
 ### 1.2 hypothesis representation
-  在逻辑回归模型中，我们希望分类器的输出值在0到1之间，也就是说希望 $$0\leq h_{\theta }(x)\leq 1$$。在线性回归中，我们的假设函数为：$h_{\theta }(x) = \mathbf{\theta }^\mathrm{T}x,$现在我们对此稍加修改，得到逻辑回归的假设函数如下：
-  $$z=\mathbf{\theta }^\mathrm{T},x$$
+  在逻辑回归模型中，我们希望分类器的输出值在0到1之间，也就是说希望 $$0\leq h_{\theta }(x)\leq 1.$$在线性回归中，我们的假设函数为：$h_{\theta }(x) = \mathbf{\theta }^\mathrm{T}x,$现在我们对此稍加修改，得到逻辑回归的假设函数如下：
+  $$z=\mathbf{\theta }^\mathrm{T}x,$$
   $$h_{\theta }(x) =g(z)=\frac{1}{1+e^{-(z)}},$$
   $$h_{\theta }(x) =g(z)=\frac{1}{1+e^{-(\mathbf{\theta }^\mathrm{T}x)}},$$
   
@@ -32,7 +32,7 @@
 
 ![interpretation_of_hypothesis_output](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/interpretation_of_hypothesis_output.png)
 
-
+上图解释了 ```逻辑回归模型如何解决分类问题```，请务必理解图片中的内容。
 ### 1.3 decision boundray(决策边界)
 
 
