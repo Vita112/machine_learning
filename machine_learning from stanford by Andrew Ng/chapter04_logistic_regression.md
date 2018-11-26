@@ -9,8 +9,8 @@
 
 + 将线性回归算法应用于分类问题
    
-  线性回归中，我们的假设函数是一个`linear line`，由于训练数据集中的y只有两个值：1和0，为达到最佳拟合， 我们设定h0(x)=0.5的点作为界限，
-把输入特征分为两类，如同下图所显示的，在紫色线的左边部分，h0(x)<0.5,我们将其看作1;而在紫色线的右边部分，h0(x)>0.5，我们将其看作0.
+  线性回归中，我们的假设函数是一个`linear line`，由于训练数据集中的y只有两个值：1和0，为达到最佳拟合， 我们设定hΘ(x)=0.5的点作为界限，
+把输入特征分为两类，如同下图所显示的，在紫色线的左边部分，hΘ(x)>0.5,我们将其看作1;而在紫色线的右边部分，hΘ(x)<0.5，我们将其看作0.
 这样似乎是可行的，拟合出的假设函数将确实将y值分为两类。但是，我们可能增加列另外一些特征输入，此时假设函数可能变为蓝色那条线。但是，很明显，将y分为0 和 1 两类的，应该是一条垂直于x轴的蓝色直线。
 ![apply_linear_regression_for_classification](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/apply_linear_regression_for_classification.png)
 
@@ -32,7 +32,7 @@
 
 ![interpretation_of_hypothesis_output](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/interpretation_of_hypothesis_output.png)
 
-上图解释了 ```逻辑回归模型如何解决分类问题```，请务必理解图片中的内容。
+上图解释了 `逻辑回归模型如何解决分类问题`，请务必理解图片中的内容。
 ### 1.3 decision boundary(决策边界)
   在上一节中，我们给出了逻辑回归中的假设函数，本节中，我们将使用`decision boundary`来帮助我们理解`逻辑回归中的假设函数是如何工作的`。
 逻辑回归的公式为：$h_{\theta }(x) =g(\mathbf{\theta }^\mathrm{T}x)=\frac{1}{1+e^{-(\mathbf{\theta }^\mathrm{T}x)}},$ 结合上节中的图片，我们可以发现：
@@ -52,6 +52,7 @@
 ![non-linear_decision_boundaries](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/non-linear_decision_boundaries.png)
 
 ## 2 logistic regression model
+
 
 
 
