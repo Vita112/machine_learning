@@ -43,6 +43,7 @@
 
 假设我们已经拟合好了参数，最终选择了$θ_0=-3$,$θ_1=1$,$θ_2=1$,于是我们得到了参数向量为θ等于\[-3,1,1]的转置。根据逻辑回归算法，
 我们有以下结论：当-3+$x_1$+$x_2$>=0时，假设函数h(θ)>=0.5，预测结果`y=1`的概率更高，预测结果出现在$x_1$+$x_2$=3的右上方；当-3+$x_1$+$x_2$<0时，假设函数h(θ)<0.5，预测结果`y=0`的概率更高，预测结果出现在$x_1$+$x_2$=3的左下方。参考下图：
+
 ![decision_boundary](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/decision_boundary.png)
 
 + non-linear decision boundarises
@@ -52,7 +53,10 @@
 ![non-linear_decision_boundaries](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/non-linear_decision_boundaries.png)
 
 ## 2 logistic regression model
-
+### 2.1 cost function
+  在逻辑回归中也有代价函数，只是此时我们的代价函数与线性回归中的不同，这是`因为如果使用线性回归中的代价函数，即`$$J(\theta ) = \frac{1}{2m}\sum_{i=1}^{m}(h_{\theta }(x^{(i)})-y^{(i)})),$$
+  
+其中，$$h_{\theta }(x) = \theta _{0}+\theta _{1}x_{1}+\cdots +\theta _{n}x_{n}。$$
 
 
 
