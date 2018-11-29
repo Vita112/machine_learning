@@ -54,7 +54,8 @@
 
 ## 2 logistic regression model
 ### 2.1 cost function
-  在逻辑回归中也有代价函数，只是此时我们的代价函数与线性回归中的不同，这是`因为如果使用线性回归中的代价函数，即$$J(\theta ) = \frac{1}{2m}\sum_{i=1}^{m}(h_{\theta }(x^{(i)})-y^{(i)}))^{2},$$ 
+  在逻辑回归中也有代价函数，只是此时我们的代价函数与线性回归中的不同，这是因为
+>如果使用线性回归中的代价函数，即$$J(\theta ) = \frac{1}{2m}\sum_{i=1}^{m}(h_{\theta }(x^{(i)})-y^{(i)}))^{2},$$ 
 其中，![hypothesis_function_for_linear_regression](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/hypothesis_for_multiple_variables.gif).我们将得到一个non-convex function，也就是说我们会得到多个local optima。`
 
 
