@@ -56,9 +56,16 @@
 ### 2.1 cost function
   在逻辑回归中也有代价函数，只是此时我们的代价函数与线性回归中的不同，这是因为
 >如果使用线性回归中的代价函数，即$$J(\theta ) = \frac{1}{2m}\sum_{i=1}^{m}(h_{\theta }(x^{(i)})-y^{(i)}))^{2},$$ 
-其中，![hypothesis_function_for_linear_regression](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/hypothesis_for_multiple_variables.gif).我们将得到一个non-convex function，也就是说我们会得到多个local optima。`
+其中，![hypothesis_function_for_linear_regression](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/hypothesis_for_multiple_variables.gif).我们将得到一个non-convex function，也就是说我们会得到多个local optima。
 
-
+显然，我们并不希望这样。在逻辑回归中，我们的假设函数如下：
+![cost_function_for_logistic_regression](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/cost_function_for_logistic_regression.png)
+当y=1时，我们得到如下有关$J(\theta )$和$h_{\theta }(x) $的图像：
+![cost_function_when_y=1](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/cost_function_when_y%3D1.png)
+当y=0时，我们得到如下有关$J(\theta )$和$h_{\theta }(x) $的图像：
+![cost_function_when_y=0](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/cost_function_when_y%3D0.png)
+上图反映了如下对应关系：
+![y取1或0时_hθ(x)与cost_function的关系](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/y%E5%8F%961%E6%88%960%E6%97%B6_h%CE%B8(x)%E4%B8%8Ecost_function%E7%9A%84%E5%85%B3%E7%B3%BB.png)
 
 
 ## 3 multiclass classification
