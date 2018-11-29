@@ -54,9 +54,9 @@
 
 ## 2 logistic regression model
 ### 2.1 cost function
-  在逻辑回归中也有代价函数，只是此时我们的代价函数与线性回归中的不同，这是`因为如果使用线性回归中的代价函数，即`$$J(\theta ) = \frac{1}{2m}\sum_{i=1}^{m}(h_{\theta }(x^{(i)})-y^{(i)})),$$
+  在逻辑回归中也有代价函数，只是此时我们的代价函数与线性回归中的不同，这是`因为如果使用线性回归中的代价函数，即`$$J(\theta ) = \frac{1}{2m}\sum_{i=1}^{m}(h_{\theta }(x^{(i)})-y^{(i)}))^{2},$$
   
-其中，$$h_{\theta }(x) = \theta _{0}+\theta _{1}x_{1}+\cdots +\theta _{n}x_{n}。$$
+其中，$$h_{\theta }(x) = \theta _{0}+(\theta _{1})x_{1}+\cdots +(\theta _{n})x_{n}。$$
 
 
 
