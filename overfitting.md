@@ -25,7 +25,7 @@ $$ sgn(w)|_{w>0}=1;sgn(w)|_{w<0}=-1;sgn(w)|_{w=0}=0 $$
 $$ J(w) = L(w)+P(w) = L(w)+ \frac{\lambda }{2n}\sum_{w}w^{2} $$
 参数w的更新公式为：
 $$  w := w + \alpha \frac{\partial J(w)}{\partial w}+\beta \frac{\lambda }{n}w $$
-the formula of ridge regression in linear regression
+the formula of **ridge regression in linear regression**
 $$  w := w + \alpha \frac{\partial J(w)}{\partial w} $$
 L2正则项起到使得参数w变小加剧的效果，但是为什么可以防止过拟合呢？一个通俗的理解便是：更小的参数值w意味着模型的复杂度更低，对训练数据的拟合刚刚好（奥卡姆剃刀），不会过分拟合训练数据，从而使得不会过拟合，以提高模型的泛化能力。 在对模型参数进行更新学习的时候，有2种更新方式：mini-batch 和 full-batch。使用mini-batch时，数据被分成几部分，依次进行更新，当所有样本数据都更新完毕后，最后一次次epoch的损失函数值则为所有mini batch的平均损失值。
 在full-batch中，每一次epoch，使用全部的训练样本进行更新，每次的损失函数值即为全部样本的误差之和。
@@ -47,5 +47,5 @@ L1正则是拉普拉斯先验，而L2正则则是高斯先验，但它们都服�
 ```
 
 
-[Reference](https://blog.csdn.net/heyongluoyao8/article/details/49429629)
-[正态分布的前世今生](http://emma.memect.com/t/05400bfdb821bac2abba403afc4ad2e9d2e7d8ea845aa7227f2433ffbe7a9684/intro-normal-distribution.pdf)
++ [Reference](https://blog.csdn.net/heyongluoyao8/article/details/49429629)
++ [正态分布的前世今生](http://emma.memect.com/t/05400bfdb821bac2abba403afc4ad2e9d2e7d8ea845aa7227f2433ffbe7a9684/intro-normal-distribution.pdf)
