@@ -68,7 +68,7 @@
 ![y取1或0时_hθ(x)与cost_function的关系](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/y%E5%8F%961%E6%88%960%E6%97%B6_h%CE%B8(x)%E4%B8%8Ecost_function%E7%9A%84%E5%85%B3%E7%B3%BB.png)
 ### 2.2 simplified cost function and gradient decent
 在上一集中我们得到了二分类问题的代价函数，为方便我们对代价函数使用梯度下降算法，我们可以用一种更加简单的表达式来合并这两个式子。如下图
-![simplified_logistic_regression_cost_function]()
+![simplified_logistic_regression_cost_function](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/simplified_logistic_regression_cost_function.png)
 从概率论观点看，我们求 使得简化后的J(θ)得到最小值的 参数θ的值，其实等价于 求J(θ)的关于θ的最大似然估计，J(θ)是log-likelyhood function。
 我们的任务是：最小化代价函数，即通过最小化训练集中的预测值和真实结果间的误差，得到参数θ，然后使用参数θ对新输入x进行预测。由于分类问题实际上是一个概率问题，所以我们也可以将 假设函数即我们的模型 看成训练数据的概率密度函数，即某个数据属于2分类中的哪一类的概率，公式表达如下：
 $$h_{\theta }(x)=\frac{1}{1+e^{-\theta^{\mathrm{T}}x}}$$
@@ -77,20 +77,20 @@ $$P(y=1|x;θ)$$
 我们知道，梯度下降的更新规则为：$$\theta _{j}:=\theta _{j}-\alpha \frac{\partial J(\theta )}{\partial \theta }$$，
 
 所以需要先对J(θ)求偏导，J(θ)如下图:
-![interpretation_logistic_regression_cost_function]()
+![interpretation_logistic_regression_cost_function](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/interpretation_logistic_regression_cost_function.png)
 然后，我们对J(θ)求关于θ的偏导数，如下图：
 
-![derivativeForLogisticRegressionCostFunction]()
+![derivativeForLogisticRegressionCostFunction](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/derivativeForLogisticRegressionCostFunction.png)
 
 其中第(2)到(3)的推导过程，一定要自己推导出来！！于是我们得到逻辑回归梯度下降的更新规则为：
 
-![gradient_decent_rule_in_logistic_regression]()
+![gradient_decent_rule_in_logistic_regression](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/gradient_decent_rule_in_logistic_regression.png)
 
 我们发现：逻辑回归的梯度下降更新规则与线性回归梯度下降规则是一样的，**但实际上它们是完全不同的，因为假设函数$h_θ(x)$是不一样的**，此处不写出$h_θ(x)$，这个必须背下来！
 + use feature scaling to make sure conversion
 + vectorized implementation
 \theta :=\theta -\alpha\mathbf{X}^\mathrm{T}(g(X\theta )-\vec{y})
-手写笔记![mynotes-for-logistic-regression]()
+手写笔记![mynotes-for-logistic-regression](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/mynotes-for-logistic-regression.jpg)
 
 
 ## 3 multiclass classification
