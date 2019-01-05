@@ -112,6 +112,6 @@ example：
 ## 3 multiclass classification
 + intuition for multiclass classification
 
-![intuition_for_multiclass_classification]()
+![intuition_for_multiclass_classification](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/intuition_for_multiclass_classification.png)
 从图中可以看出：我们得到三个分类器$h_{\theta }^{i}(x)$，每一个分类器都对其中的一种情况进行训练。对于新的数据x，通过计算$h_{\theta }^{i}(x)=P(y=i|x;\theta )  (i=1,2,3)$,找到概率最大的那个$h_{\theta }^{i}(x)$，即为我们预测的结果。
 
