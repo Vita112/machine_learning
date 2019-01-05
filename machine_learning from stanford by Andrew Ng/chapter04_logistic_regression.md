@@ -74,6 +74,7 @@
 $$h_{\theta }(x)=\frac{1}{1+e^{-\theta^{\mathrm{T}}x}}$$
 $$P(y=1|x;θ)$$
 + 使用梯度下降算法求出最优θ值
+
 我们知道，梯度下降的更新规则为：$$\theta _{j}:=\theta _{j}-\alpha \frac{\partial J(\theta )}{\partial \theta }$$，
 
 所以需要先对J(θ)求偏导，J(θ)如下图:
@@ -89,8 +90,11 @@ $$P(y=1|x;θ)$$
 我们发现：逻辑回归的梯度下降更新规则与线性回归梯度下降规则是一样的，**但实际上它们是完全不同的，因为假设函数$h_θ(x)$是不一样的**，此处不写出$h_θ(x)$，这个必须背下来！
 + use feature scaling to make sure conversion
 + vectorized implementation
-\theta :=\theta -\alpha\mathbf{X}^\mathrm{T}(g(X\theta )-\vec{y})
-手写笔记![mynotes-for-logistic-regression](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/mynotes-for-logistic-regression.jpg)
+
+梯度下降规则的向量化表示为：$$\theta :=\theta -\alpha\mathbf{X}^\mathrm{T}(g(X\theta )-\vec{y})$$
++ 手写笔记
+
+![mynotes-for-logistic-regression](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/mynotes-for-logistic-regression.jpg)
 
 
 ## 3 multiclass classification
