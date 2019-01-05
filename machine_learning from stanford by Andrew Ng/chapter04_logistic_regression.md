@@ -86,8 +86,11 @@ $$P(y=1|x;θ)$$
 
 ![gradient_decent_rule_in_logistic_regression]()
 
-我们发现
-
+我们发现：逻辑回归的梯度下降更新规则与线性回归梯度下降规则是一样的，**但实际上它们是完全不同的，因为假设函数$h_θ(x)$是不一样的**，此处不写出$h_θ(x)$，这个必须背下来！
++ use feature scaling to make sure conversion
++ vectorized implementation
+\theta :=\theta -\alpha\mathbf{X}^\mathrm{T}(g(X\theta )-\vec{y})
+手写笔记![mynotes-for-logistic-regression]()
 
 
 ## 3 multiclass classification
