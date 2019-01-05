@@ -107,7 +107,7 @@ $$P(y=1|x;θ)$$
 > 优点：不需要手动选择α；比梯度下降更快达到收敛
 > 缺点：实现将更加复杂
 example：
-
+![octave_implementation_for_2_parameters](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/octave_implementation_for_2_parameters.png)
 后面接着讲了 octave的实现过程。
 ## 3 multiclass classification
 
