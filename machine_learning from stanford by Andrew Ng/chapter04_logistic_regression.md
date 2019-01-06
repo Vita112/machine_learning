@@ -97,16 +97,17 @@ $$P(y=1|x;θ)$$
 ![mynotes-for-logistic-regression](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/mynotes-for-logistic-regression.jpg)
 ### 2.3 advanced optimization
 如果用代码来实现梯度下降算法，我们首先需要编写两个代码，一个用于计算J(θ)，一个计算J(θ)的偏导数，然后将偏导数的结果代入梯度下降规则中，最后得到使得J(θ)最小的θ值。**只是，在写出了计算J(θ)和J(θ)偏导数的代码之后，我们的优化算法其实不只梯度下降一种**，实际上还可以使用
-> conjugate gradient 共轭梯度算法
-> BFGS算法 ：一种拟牛顿法，使用BFGS矩阵作为拟牛顿法中的对称正定矩阵的方法，是求解无约束非线性优化问题的常用方法之一
-参考[BFGS算法](https://blog.csdn.net/itplus/article/details/21897443)，讲的很详细，需要时间去理解。
-> L-BFGS算法
+>conjugate gradient 共轭梯度算法
+>BFGS算法 ：一种拟牛顿法，使用BFGS矩阵作为拟牛顿法中的对称正定矩阵的方法，是求解无约束非线性优化问题的常用方法之一
+>参考[BFGS算法](https://blog.csdn.net/itplus/article/details/21897443)，讲的很详细，需要时间去理解。
+>L-BFGS算法
 
 以上这三种算法都有一个主要的思想：他们是用一个智能的内部循环，也被称为线性搜索算法，他可以自动为学习速率α选择不同的值，然后选择一个最优的α。
 其优缺点如下：
-> 优点：不需要手动选择α；比梯度下降更快达到收敛
-> 缺点：实现将更加复杂
-example：
+>优点：不需要手动选择α；比梯度下降更快达到收敛
+>缺点：实现将更加复杂
+
++ example：
 ![octave_implementation_for_2_parameters](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/octave_implementation_for_2_parameters.png)
 后面接着讲了 octave的实现过程。
 ## 3 multiclass classification
