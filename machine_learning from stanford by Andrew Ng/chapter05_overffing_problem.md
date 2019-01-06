@@ -50,7 +50,7 @@ $$\theta =(\mathbf{X}^\mathrm{T}X)^{-1}\mathbf{X}^\mathrm{T}y，$$ 关于其详�
 ![2.4LR-正则化-ridgeRegression-概率视角-高斯噪声高斯先验](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/2.4LR-%E6%AD%A3%E5%88%99%E5%8C%96-ridgeRegression-%E6%A6%82%E7%8E%87%E8%A7%86%E8%A7%92-%E9%AB%98%E6%96%AF%E5%99%AA%E5%A3%B0%E9%AB%98%E6%96%AF%E5%85%88%E9%AA%8C.png)
 + non-invertability(advanced/optional)
 
-之前我们讨论过正规方程法中的不可逆问题，他是这样描述的：当样本数m$\leqslant$特征数n时，$\mathbf{X}^\mathrm{T}X)$将变得不可逆invertable，或者称为奇异的singular，导致这个矩阵退化be degenerate。
+之前我们讨论过正规方程法中的不可逆问题，他是这样描述的：当$m\leqslant$n$时,m为样本数，n为特征数，$\mathbf{X}^\mathrm{T}X)$将变得不可逆invertable，或者称为奇异的singular，导致这个矩阵退化be degenerate。
 >正则化解决了不可逆的问题：如果λ是大于零的，那么逆项中的矩阵将变得可逆，
 ### 4 regularization logistic regression
 
@@ -64,5 +64,11 @@ $$\theta =(\mathbf{X}^\mathrm{T}X)^{-1}\mathbf{X}^\mathrm{T}y，$$ 关于其详�
 此处有一个函数需要解释一下：函数fminunc()返回的是 函数costFunction在无约束条件下的最小值，即为代价函数的最小值。下图为在octave上的实现：
 ![implementation_on_octave_for_advanced_optimization_algorithm_for_regulariezed_logistic_regression](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/implementation_on_octave_for_advanced_optimization_algorithm_for_regulariezed_logistic_regression.png)
 
-
+## summary
+至此，总算是看完了机器学习中的两大算法，最为总结，写下几个学习的要点：
++ 1. 线性回归算法用于拟合数据，模型的阶数决定了对数据是 线性拟合，还是非线性拟合。逻辑回归用于分类问题，包括二分类和多分类，模型的阶数决定了对数据的决策边界是 线性的，还是非线性的。
++ 2. 梯度下降算法在线性回归和逻辑回归中都适用。算法中最重要的一步是 **求代价函数J(θ)的偏导数**，表面上看，两种算法的更新规则是一样的，**但是，由于$h_{\theta }(x)$是两种完全不同的假设模型**，所以实际上是完全不一样的。
++ 3. 求最小化J(θ)的θ值
+线性回归中有两种方法：梯度下降法和正规方程法，两者都需要对J(θ)求偏导，**不同的是**：梯度下降法中，通过同时更新所有的参数$θ_j$的值，使用学习速率α确定每次更新的幅度，通过不断迭代的方式最终得到使得J(θ)取值最小的θ值；而正规方程法中，则是直接使用一个θ的解的向量化公式来得到最小化J(θ)的θ值，这个θ的向量化公式的求解过程为：将代价函数J(θ)进行向量表示，然后求其关于θ的最大似然估计(方法为：求解J(θ)关于θ的偏导，另偏导结果等于0，得到θ的向量表示结果)。<br>
+逻辑回归中，除了梯度下降算法外，还有共轭梯度算法，BFGS，L-BFGS等方法，**对于这三种高级的优化算法，需要令行学习**。
 + 参考：[B站机器学习白板推导系列](https://space.bilibili.com/97068901/video)
