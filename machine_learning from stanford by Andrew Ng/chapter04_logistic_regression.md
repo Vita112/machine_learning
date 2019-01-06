@@ -37,7 +37,7 @@
   在上一节中，我们给出了逻辑回归中的假设函数，本节中，我们将使用`decision boundary`来帮助我们理解`逻辑回归中的假设函数是如何工作的`。
 逻辑回归的公式为：$h_{\theta }(x) =g(\mathbf{\theta }^\mathrm{T}x)=\frac{1}{1+e^{-(\mathbf{\theta }^\mathrm{T}x)}},$ 结合上节中的图片，我们可以发现：
 >如果$h_{\theta }(x)\geq 0.5$,即g(z)$\geq 0.5$,此时，$\mathbf{\theta }^\mathrm{T}x\geq 0$,预测结果g(z)=1的概率更大，g(z)更向1趋近。，
- 如果$h_{\theta }(x)< 0.5$,即g(z)< 0.5,此时，$\mathbf{\theta }^\mathrm{T}x< 0$,预测结果g(z)=0的概率更大，g(z)更向0趋近。，
+>如果$h_{\theta }(x)< 0.5$,即g(z)< 0.5,此时，$\mathbf{\theta }^\mathrm{T}x< 0$,预测结果g(z)=0的概率更大，g(z)更向0趋近。，
 
 + explanation of decision boundary
 
@@ -54,9 +54,8 @@
 
 ## 2 logistic regression model
 ### 2.1 cost function
-  在逻辑回归中也有代价函数，只是此时我们的代价函数与线性回归中的不同，这是因为
->如果使用线性回归中的代价函数，即$$J(\theta ) = \frac{1}{2m}\sum_{i=1}^{m}(h_{\theta }(x^{(i)})-y^{(i)}))^{2},$$ 
-其中，![hypothesis_function_for_linear_regression](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/hypothesis_for_multiple_variables.gif).我们将得到一个non-convex function，也就是说我们会得到多个local optima。
+  在逻辑回归中也有代价函数，只是此时我们的代价函数与线性回归中的不同，**这是因为如果使用线性回归中的代价函数**，即$$J(\theta ) = \frac{1}{2m}\sum_{i=1}^{m}(h_{\theta }(x^{(i)})-y^{(i)}))^{2},$$ 
+其中，![hypothesis_function_for_linear_regression](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/hypothesis_for_multiple_variables.gif).我们**将得到一个non-convex function**，也就是说我们会得到多个local optima。
 
 显然，我们并不希望这样。在逻辑回归中，我们的假设函数如下：
 ![cost_function_for_logistic_regression](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/cost_function_for_logistic_regression.png)
@@ -83,7 +82,7 @@ $$P(y=1|x;θ)$$
 
 ![derivativeForLogisticRegressionCostFunction](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/derivativeForLogisticRegressionCostFunction.png)
 
-其中第(2)到(3)的推导过程，一定要自己推导出来！！于是我们得到逻辑回归梯度下降的更新规则为：
+其中**第(2)到(3)的推导过程，一定要自己推导出来！！**于是我们得到逻辑回归梯度下降的更新规则为：
 
 ![gradient_decent_rule_in_logistic_regression](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/gradient_decent_rule_in_logistic_regression.png)
 
@@ -91,17 +90,17 @@ $$P(y=1|x;θ)$$
 + use feature scaling to make sure conversion
 + vectorized implementation
 
-梯度下降规则的向量化表示为：$$\theta :=\theta -\alpha\mathbf{X}^\mathrm{T}(g(X\theta )-\vec{y})$$
+**梯度下降规则的向量化表示**为：$$\theta :=\theta -\alpha\mathbf{X}^\mathrm{T}(g(X\theta )-\vec{y})$$
 + 手写笔记
 
 ![mynotes-for-logistic-regression](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/mynotes-for-logistic-regression.jpg)
 ### 2.3 advanced optimization
 如果用代码来实现梯度下降算法，我们首先需要编写两个代码，一个用于计算J(θ)，一个计算J(θ)的偏导数，然后将偏导数的结果代入梯度下降规则中，最后得到使得J(θ)最小的θ值。**只是，在写出了计算J(θ)和J(θ)偏导数的代码之后，我们的优化算法其实不只梯度下降一种**，实际上还可以使用
 
->conjugate gradient 共轭梯度算法
->BFGS算法 ：一种拟牛顿法，使用BFGS矩阵作为拟牛顿法中的对称正定矩阵的方法，是求解无约束非线性优化问题的常用方法之一
->参考[BFGS算法](https://blog.csdn.net/itplus/article/details/21897443)，讲的很详细，需要时间去理解。<br>
->L-BFGS算法<br>
+>+ conjugate gradient 共轭梯度算法
+>+ BFGS算法 ：一种拟牛顿法，使用BFGS矩阵作为拟牛顿法中的对称正定矩阵的方法，是求解无约束非线性优化问题的常用方法之一<br>
+参考[BFGS算法](https://blog.csdn.net/itplus/article/details/21897443)，讲的很详细，需要时间去理解。
+>+ L-BFGS算法
 
 以上这三种算法都有一个主要的思想：他们是用一个智能的内部循环，也被称为线性搜索算法，他可以自动为学习速率α选择不同的值，然后选择一个最优的α。
 其优缺点如下：
