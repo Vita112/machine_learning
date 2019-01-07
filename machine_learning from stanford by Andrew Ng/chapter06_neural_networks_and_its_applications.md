@@ -34,21 +34,23 @@ $\frac{n^{2}}{2!}$=5000，三次项特征数为$\frac{n^{3}}{3!}$=17000。如果
 ### 2.1 model representation Ⅰ
 首先通过一张图看一下大脑的神经元如何工作：
 ![neuron_in_brain](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/neuron_in_brain.png)
-一个神经元主要有3个部分组成：细胞主体；树突dendrite，一定数量的输入神经，接受来自其他神经元的信息；轴突axon，输出神经，将信息/信号传递给其他神经元。**神经元是一个计算单元，它从输入神经接受一定数目的信息，进行计算，然后将结果通过轴突传到其他节点或其他神经元。**在人工神经网络中，我们使用一个非常简单的模型来模拟神经元的工作：将神经元模拟为一个逻辑单元，逻辑单元接受输入信息，并输出计算结果。在分类问题中，这个逻辑单元也被称为以sigmoid函数或者逻辑函数为激励函数的人工神经元，模型算法为
+
+一个神经元主要有3个部分组成：细胞主体；树突dendrite，一定数量的输入神经，接受来自其他神经元的信息；轴突axon，输出神经，将信息/信号传递给其他神经元。**神经元是一个计算单元，它从输入神经接受一定数目的信息，进行计算，然后将结果通过轴突传到其他节点或其他神经元。**在人工神经网络中，我们使用一个非常简单的模型来模拟神经元的工作：将神经元模拟为一个逻辑单元，逻辑单元接受输入信息，并输出计算结果。在分类问题中，这个逻辑单元也被称为以sigmoid函数或者逻辑函数为激励函数的人工神经元.
 
 **神经网络就是不同的神经元组合在一起的集合，通过下图解释：**
 ![layers_in_nn](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/layers_in_nn.png)
+
 layer1代表输入层，在这一层输入特征项x1，x2，x3；，layer3代表输出层，这一层神经元计算并输出假设模型$h_{\Theta }(x)$的最终结果。layer2被称作隐藏层，隐藏层有时不只一层，任何非输入且非输出层都属于隐藏层，在监督学习中我们无法在训练集中看到隐藏层的值。下面解释神经网络如何完成计算，图如下：
 ![how_NN_computes.](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/how_NN_computes.png)
 > 首先，对标记符号解释：$a_{i}^{(j)}$:第j层的第i个单元的激活函数，此处是一个sigmoid/逻辑激励函数；$\Theta ^{j}$：控制从第j层到第j+1层的函数映射的权重矩阵。其次，**必须理解$\Theta ^{j}$的矩阵维度**：一般说来，$\Theta ^{j}\in \mathbb{R}^{s_{j+1}\times s_{j}+1}$.
 
-以上我们从数学上定义了NN:即定义一个函数$h_{\Theta }(x)$表示输入x到输出y的映射，不同的参数对应不同的假设，给出不同的假设模型。*下一节预告：深入理解假设的作用；使用例子演示假设如何计算。*
++ 以上我们从数学上定义了NN:即定义一个函数$h_{\Theta }(x)$表示输入x到输出y的映射，不同的参数对应不同的假设，给出不同的假设模型。*下一节预告：深入理解假设的作用；使用例子演示假设如何计算。*
 ### 2.2 model representation Ⅱ
 接上一小节中对神经网络过程的描述，我们发现隐藏层激活g函数的输入是一个加权线性组合，它进行的是矩阵向量操作，即$\Theta ^{j}x_{i}$ , $x_i$是我们的特征输入。我们使用z来表示这个加权线性组合，则
 $$z^{(j)}=z_{i}^{(j)}=\mathbf{\left (z_{1}^{(j)},z_{2}^{(j)},\cdots ,z_{n}^{(j)}\right )}^\mathrm{T},$$
 $z_{i}^{(j)}$表示第j层上第i个单元的加权线性组合，其维度表示为$z ^{j}\in \mathbb{R}^{s_{j+1}\times 1}$, $a^{(j)}=g(z^{(j)})$的维度与$z ^{j}$的维度相同，为统一记号表示，我们将初始特征向量x记作$a^{1}$。这些记号标记使我们能够更加清楚地理解神经网络的计算过程。此节中介绍一种**前向传播算法**：从输入层的$a^{1}$层开始向前传播到第1个隐藏层，使用激励函数计算得到输出$a^{2}$，然后继续向前传播至第2个隐藏层，重复上次的步骤，直到最终达到输出层。同逻辑回归类似的是：神经网络也使用了sigmoid算法作为激活函数，**不同的是**：神经网络中，并不是使用sigmoid函数一次就得到结果，而是在网络的每一层都使用sigmoid函数对参数进行训练，然后将训练结果作为输入，“喂”给网络的下一层。以下为图片直观表示：
 
-![neural_networks_model_representation]()
+![neural_networks_model_representation](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/neural_networks_model_representation.png)
 + what will be talked in the next 2 videos？
 
 NN如何利用隐藏层计算更复杂的特征，并输入到最后的输出层？<br>
