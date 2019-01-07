@@ -80,7 +80,7 @@ idea：**给与 希望取非运算的变量 一个绝对值大的负数，作为
 ![The_Θ_matrices_for_AND_NOR_OR](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/The_%CE%98_matrices_for_AND_NOR_OR.png)，结合这三种运算，我们得到XNOR logical operator，当x1和x2同时为0或者1时，输出1.
 ![XNOR_logical_operator](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/XNOR_logical_operator.png).从第1层到第2层，我们使用矩阵$\Theta ^{(1)}$进行AND和NOR运算，
 $$\Theta ^{(1)}=\begin{bmatrix}
--30 &20  &20 \\ 
+-30 &20  &20 \\\\ 
  10&-20  &-20 
 \end{bmatrix},$$
 从第2层到第3层，我们使用矩阵$\Theta ^{(2)}$进行OR运算。
