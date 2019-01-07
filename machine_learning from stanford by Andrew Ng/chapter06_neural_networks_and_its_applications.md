@@ -59,16 +59,16 @@ NN如何利用隐藏层计算更复杂的特征，并输入到最后的输出层
 这一节尝试从逻辑运算的视角解释解释神经网络的工作原理。假设我们有二进制的输入特征x1和x2，它们要么取0值，要么取1值。下面的简化图中我们只取了4个样本点，被分为正负两类样本，分类规则是*逻辑运算中的异或非规则*。
 >+ XOR: exclusive OR gate，异或门，数学符号为：⊕，a⊕b:如果a、b值不同，则结果为1；如果a、b值相同，则结果为0.
 >+ XNOR: not XOR gate，异或非门。逻辑规则为：如果a、b值相同，则结果为1；如果a、b值不同，则结果为0.
-![non-linear_classification_examle_XOR_XNOR]()
+![non-linear_classification_examle_XOR_XNOR](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/non-linear_classification_examle_XOR_XNOR.png)
 
 我们的任务是：**使用神经网络模型拟合数据，找到决策边界来区分正负样本**。
 + simple example：AND
 
-假设我们有二进制的输入特征x1和x2，且$x_{1},x_{2}\in \{{0,1}\}$,$y=x_{1} AND x_{2}$.下图显示：为特征项加入特定的权重后，使用逻辑真值表进行运算，我们**发现假设模型$h_{\Theta }(x)$其实正在做“AND与运算”**。
-![simple_example_AND]()
+假设我们有二进制的输入特征x1和x2，且$x_{1},x_{2}\in \{{0,1}\}$,$y=x_{1} AND x_{2}$.下图显示：为特征项加入特定的权重后，使用逻辑真值表进行运算，我们**发现假设模型$h_{\Theta }(x)$其实正在做“AND”与运算”**。
+![simple_example_AND](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/simple_example_AND.png)
 + simple example：OR
 
-![simple_example_OR]()
+![simple_example_OR](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/simple_example_OR.png)
 ### 3.2 examples and intuitions Ⅱ
 内容:**演示神经网络如何计算非线性假设函数**。
 + simple example：NOT
@@ -77,7 +77,9 @@ idea：**给与 希望取非运算的变量 一个绝对值大的负数，作为
 + compute x1 XNOR x2
 
 在开始之前，我们先看上述三种运算中，权重矩阵$\Theta ^{(1)}$的取值是这样:
-![The_Θ_matrices_for_AND_NOR_OR]()，结合这三种运算，我们得到XNOR logical operator，当x1和x2同时为0或者1时，输出1.![XNOR_logical_operator]().从第1层到第2层，我们使用矩阵$$\Theta ^{(1)}$进行AND和NOR运算，$$\Theta ^{(1)}=\begin{bmatrix}
+![The_Θ_matrices_for_AND_NOR_OR](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/The_%CE%98_matrices_for_AND_NOR_OR.png)，结合这三种运算，我们得到XNOR logical operator，当x1和x2同时为0或者1时，输出1.
+![XNOR_logical_operator](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/XNOR_logical_operator.png).从第1层到第2层，我们使用矩阵$\Theta ^{(1)}$进行AND和NOR运算，
+$$\Theta ^{(1)}=\begin{bmatrix}
 -30 &20  &20 \\ 
  10&-20  &-20 
 \end{bmatrix},$$
@@ -86,6 +88,6 @@ $$\Theta ^{(2)}=\begin{bmatrix}
 -10 &20  &20 
 \end{bmatrix}.$$
 现在，我们使用神经网络进行了 XNOR运算，网络的隐藏层有2个节点。**演示图如下：**
-![summarize_for_XNOR_using_NN]()
+![summarize_for_XNOR_using_NN](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/summarize_for_XNOR_using_NN.png)
 
 ### 3.3 multiclass classification
