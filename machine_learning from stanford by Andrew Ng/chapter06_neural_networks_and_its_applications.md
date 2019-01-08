@@ -46,7 +46,9 @@ layer1代表输入层，在这一层输入特征项x1，x2，x3；，layer3代�
 ### 2.2 model representation Ⅱ
 接上一小节中对神经网络过程的描述，我们发现隐藏层激活g函数的输入是一个加权线性组合，它进行的是矩阵向量操作，即$\Theta ^{j}x_{i}$ , $x_i$是我们的特征输入。我们使用z来表示这个加权线性组合，则
 $$z^{(j)}=z_{i}^{(j)}=\mathbf{\left (z_{1}^{(j)},z_{2}^{(j)},\cdots ,z_{n}^{(j)}\right )}^\mathrm{T},$$
-$z_{i}^{(j)}$表示第j层上第i个单元的加权线性组合，即为$z_{i}^{(j)}=\Theta _{i}^{(j-1)}a_{i}^{(j-1)}$,其维度表示为$z ^{j}\in \mathbb{R}^{s_{j}\times 1}$, $a^{(j)}=g(z^{(j)})$的维度与$z ^{j}$的维度相同，为统一记号表示，我们将初始特征向量x记作$a^{1}$。这些记号使我们能够更加清楚地理解神经网络的计算过程。此节中介绍一种**前向传播算法**：从输入层的$a^{1}$层开始向前传播到第1个隐藏层，使用激励函数计算得到输出$a^{2}$，然后继续向前传播至第2个隐藏层，重复上次的步骤，直到最终达到输出层。同逻辑回归类似的是：神经网络也使用了sigmoid算法作为激活函数，**不同的是**：神经网络中，并不是使用sigmoid函数一次就得到结果，而是在网络的每一层都使用sigmoid函数对参数进行训练，然后将训练结果作为输入，“喂”给网络的下一层。以下为图片直观表示：
+$z_{i}^{(j)}$表示第j层上第i个单元的加权线性组合，即为$$z_{i}^{(j)}=\Theta _{i}^{(j-1)}a_{i}^{(j-1)},$$
+其维度表示为$z ^{j}\in \mathbb{R}^{s_{j}\times 1},$ 
+于是，$a^{(j)}=g(z^{(j)})$ 的维度与 $z ^{j}$ 的维度相同，为统一记号表示，我们将初始特征向量x记作 $a^{1}$ 。这些记号使我们能够更加清楚地理解神经网络的计算过程。此节中介绍一种**前向传播算法**：从输入层的$a^{1}$层开始向前传播到第1个隐藏层，使用激励函数计算得到输出$a^{2}$，然后继续向前传播至第2个隐藏层，重复上次的步骤，直到最终达到输出层。同逻辑回归类似的是：神经网络也使用了sigmoid算法作为激活函数，**不同的是**：神经网络中，并不是使用sigmoid函数一次就得到结果，而是在网络的每一层都使用sigmoid函数对参数进行训练，然后将训练结果作为输入，“喂”给网络的下一层。以下为图片直观表示：
 
 ![neural_networks_model_representation](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/neural_networks_model_representation.png)
 + what will be talked in the next 2 videos？
@@ -89,5 +91,15 @@ $$\Theta ^{(2)}=\begin{bmatrix}
 \end{bmatrix}.$$
 现在，我们使用神经网络进行了 XNOR运算，网络的隐藏层有2个节点。**演示图如下：**
 ![summarize_for_XNOR_using_NN](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/summarize_for_XNOR_using_NN.png)
-
+结合逻辑真值表，最终输出$h_{\Theta }(x)$的值。
 ### 3.3 multiclass classification
+在多分类问题中，我们使用向量表示模型最终输出的结果，![resulting_classs]()。下图例子中我们的input是代表不同事物的图片，经过隐藏层的计算得到一个向量，使用到最后一层的参数矩阵Θ左乘该向量，得到四个4维向量。
+![examples_of_multiclassification]()
+每一层的神经网络计算步骤如下：![NN_computing_for_multiclassification]()
+
+## 4 summary
+
+得益于计算机硬件性能，包括计算速度、计算能力和存储空间等的跨越式提升，神经网络在沉寂一段时间后再次引起大众关注，并在ml领域取得了极大的突破，得到了很好的性能表现。总结要点如下：
++ a node in nueral networks is a neural computing unit,which receives data from the former layer and run it with our hypotheses model.
++ we can't observe the computing processes of neural networks
++ allow us to deal with complex problems having large number of features
