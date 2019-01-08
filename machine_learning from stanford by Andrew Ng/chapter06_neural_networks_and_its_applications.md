@@ -93,9 +93,9 @@ $$\Theta ^{(2)}=\begin{bmatrix}
 ![summarize_for_XNOR_using_NN](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/summarize_for_XNOR_using_NN.png)
 结合逻辑真值表，最终输出$h_{\Theta }(x)$的值。
 ### 3.3 multiclass classification
-在多分类问题中，我们使用向量表示模型最终输出的结果，![resulting_classs]()。下图例子中我们的input是代表不同事物的图片，经过隐藏层的计算得到一个向量，使用到最后一层的参数矩阵Θ左乘该向量，得到四个4维向量。
-![examples_of_multiclassification]()
-每一层的神经网络计算步骤如下：![NN_computing_for_multiclassification]()
+在多分类问题中，我们使用向量表示模型最终输出的结果，![resulting_classs](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/resulting_classs.png)。下图例子中我们的input是代表不同事物的图片，经过隐藏层的计算得到一个向量，使用到最后一层的参数矩阵Θ左乘该向量，得到四个4维向量。
+![examples_of_multiclassification](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/examples_of_multiclassification.png)
+每一层的神经网络计算步骤如下：![NN_computing_for_multiclassification](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/NN_computing_for_multiclassification.png)
 
 ## 4 summary
 
