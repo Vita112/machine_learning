@@ -40,31 +40,31 @@ $\frac{n^{2}}{2!}$=5000，三次项特征数为$\frac{n^{3}}{3!}$=17000。如果
 
 layer1代表输入层，在这一层输入特征项x1，x2，x3；，layer3代表输出层，这一层神经元计算并输出假设模型$h_{\Theta }(x)$的最终结果。layer2被称作隐藏层，隐藏层有时不只一层，任何非输入且非输出层都属于隐藏层，在监督学习中我们无法在训练集中看到隐藏层的值。下面解释神经网络如何完成计算，图如下：
 ![how_NN_computes.](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/how_NN_computes.png)
-> 首先，对标记符号解释：$a_{i}^{(j)}$:第j层的第i个单元的激活函数，此处是一个sigmoid/逻辑激励函数；$\Theta ^{j}$：控制从第j层到第j+1层的函数映射的权重矩阵。其次，**必须理解$\Theta ^{j}$的矩阵维度**：一般说来，$\Theta ^{j}\in \mathbb{R}^{s_{j+1}\times s_{j}+1}$, $s_{j}表示第j层的节点数$.
+> 首先，对标记符号解释：$a_{i}^{(j)}$:第j层的第i个单元的激活函数，此处是一个sigmoid/逻辑激励函数；$\Theta ^{j}$：控制从第j层到第j+1层的函数映射的权重矩阵。其次，**必须理解$\Theta ^{j}$的矩阵维度**：一般说来，$\Theta ^{j}\in \mathbb{R}^{s_{j+1}\times (s_{j}+1})$, $s_{j}$表示第j层的节点数.
 
 + 以上我们从数学上定义了NN:即定义一个函数$h_{\Theta }(x)$表示输入x到输出y的映射，不同的参数对应不同的假设，给出不同的假设模型。*下一节预告：深入理解假设的作用；使用例子演示假设如何计算。*
 ### 2.2 model representation Ⅱ
 接上一小节中对神经网络过程的描述，我们发现隐藏层激活g函数的输入是一个加权线性组合，它进行的是矩阵向量操作，即$\Theta ^{j}x_{i}$ , $x_i$是我们的特征输入。我们使用z来表示这个加权线性组合，则
 $$z^{(j)}=z_{i}^{(j)}=\mathbf{\left (z_{1}^{(j)},z_{2}^{(j)},\cdots ,z_{n}^{(j)}\right )}^\mathrm{T},$$
-$z_{i}^{(j)}$表示第j层上第i个单元的加权线性组合，即为$z_{i}^{(j)}=\Theta _{i}^{(j-1)}a_{i}^{(j-1)}$,其维度表示为$z ^{j}\in \mathbb{R}^{s_{j}\times 1}$, $a^{(j)}=g(z^{(j)})$的维度与$z ^{j}$的维度相同，为统一记号表示，我们将初始特征向量x记作$a^{1}$。这些记号标记使我们能够更加清楚地理解神经网络的计算过程。此节中介绍一种**前向传播算法**：从输入层的$a^{1}$层开始向前传播到第1个隐藏层，使用激励函数计算得到输出$a^{2}$，然后继续向前传播至第2个隐藏层，重复上次的步骤，直到最终达到输出层。同逻辑回归类似的是：神经网络也使用了sigmoid算法作为激活函数，**不同的是**：神经网络中，并不是使用sigmoid函数一次就得到结果，而是在网络的每一层都使用sigmoid函数对参数进行训练，然后将训练结果作为输入，“喂”给网络的下一层。以下为图片直观表示：
+$z_{i}^{(j)}$表示第j层上第i个单元的加权线性组合，即为$z_{i}^{(j)}=\Theta _{i}^{(j-1)}a_{i}^{(j-1)}$,其维度表示为$z ^{j}\in \mathbb{R}^{s_{j}\times 1}$, $a^{(j)}=g(z^{(j)})$的维度与$z ^{j}$的维度相同，为统一记号表示，我们将初始特征向量x记作$a^{1}$。这些记号使我们能够更加清楚地理解神经网络的计算过程。此节中介绍一种**前向传播算法**：从输入层的$a^{1}$层开始向前传播到第1个隐藏层，使用激励函数计算得到输出$a^{2}$，然后继续向前传播至第2个隐藏层，重复上次的步骤，直到最终达到输出层。同逻辑回归类似的是：神经网络也使用了sigmoid算法作为激活函数，**不同的是**：神经网络中，并不是使用sigmoid函数一次就得到结果，而是在网络的每一层都使用sigmoid函数对参数进行训练，然后将训练结果作为输入，“喂”给网络的下一层。以下为图片直观表示：
 
 ![neural_networks_model_representation](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/neural_networks_model_representation.png)
 + what will be talked in the next 2 videos？
 
-为何层层训练后，就可以学习更加复杂的假设？video 1
-NN如何利用隐藏层计算更复杂的特征，并输入到最后的输出层？<br>
+为何层层训练后，就可以学习更加复杂的假设？video 1<br>
+NN如何利用隐藏层计算更复杂的特征，并输入到最后的输出层？
 
 ## 3 applications
 ### 3.1 examples and intuitions Ⅰ
 这一节尝试从逻辑运算的视角解释解释神经网络的工作原理。假设我们有二进制的输入特征x1和x2，它们要么取0值，要么取1值。下面的简化图中我们只取了4个样本点，被分为正负两类样本，分类规则是*逻辑运算中的异或非规则*。
->+ XOR: exclusive OR gate，异或门，数学符号为：⊕，a⊕b:如果a、b值不同，则结果为1；如果a、b值相同，则结果为0.
->+ XNOR: not XOR gate，异或非门。逻辑规则为：如果a、b值相同，则结果为1；如果a、b值不同，则结果为0.
-![non-linear_classification_examle_XOR_XNOR](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/non-linear_classification_examle_XOR_XNOR.png)
+>+ XOR: exclusive OR gate，**异或门**，数学符号为：⊕，a⊕b:如果a、b值不同，则结果为1；如果a、b值相同，则结果为0.
+>+ XNOR: not XOR gate，**异或非门**。逻辑规则为：如果a、b值相同，则结果为1；如果a、b值不同，则结果为0.
 
+![non-linear_classification_examle_XOR_XNOR](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/non-linear_classification_examle_XOR_XNOR.png)
 我们的任务是：**使用神经网络模型拟合数据，找到决策边界来区分正负样本**。
 + simple example：AND
 
-假设我们有二进制的输入特征x1和x2，且$x_{1},x_{2}\in \{{0,1}\}$,$y=x_{1} AND x_{2}$.下图显示：为特征项加入特定的权重后，使用逻辑真值表进行运算，我们**发现假设模型$h_{\Theta }(x)$其实正在做“AND”与运算”**。
+假设我们有二进制的输入特征x1和x2，且$x_{1},x_{2}\in\\{{0,1}\\}$,$y=x_{1} AND x_{2}$.下图显示：为特征项加入特定的权重后，使用逻辑真值表进行运算，我们**发现假设模型$h_{\Theta }(x)$其实正在做“AND”与运算”**。
 ![simple_example_AND](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/simple_example_AND.png)
 + simple example：OR
 
@@ -76,8 +76,8 @@ NN如何利用隐藏层计算更复杂的特征，并输入到最后的输出层
 idea：**给与 希望取非运算的变量 一个绝对值大的负数，作为权值**。比如例子中，x1的权值为-20，得到了对x1进行非运算的效果。
 + compute x1 XNOR x2
 
-在开始之前，我们先看上述三种运算中，权重矩阵$\Theta ^{(1)}$的取值是这样:
-![The_Θ_matrices_for_AND_NOR_OR](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/The_%CE%98_matrices_for_AND_NOR_OR.png)，结合这三种运算，我们得到XNOR logical operator，当x1和x2同时为0或者1时，输出1.
+在开始之前，我们结合上述三种运算，得到一个这样的权重矩阵$\Theta ^{(1)}$:
+![The_Θ_matrices_for_AND_NOR_OR](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/The_%CE%98_matrices_for_AND_NOR_OR.png)，再次结合运算，我们得到XNOR logical operator，当且仅当x1和x2同时为0或者1时，输出1.
 ![XNOR_logical_operator](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/XNOR_logical_operator.png).从第1层到第2层，我们使用矩阵$\Theta ^{(1)}$进行AND和NOR运算，
 $$\Theta ^{(1)}=\begin{bmatrix}
 -30 &20  &20 \\\\ 
