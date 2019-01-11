@@ -25,8 +25,8 @@ triple sum中的i不代表第i个训练样本
 
 假设给定一个标注训练集$\\{(x^{(1)},y^{(1)})\cdots (x^{(m)},y^{(m)})\\}$,
 + 对于所有的l，i，j，设定 $\Delta \_{i,j}^{(l)}:= 0$；for training example t=1 to m:
-+1. set $a^{(1)}:=x^{(t)}$
-+2. perform forward propagation to compute $a^{(l)}$ for l=2,3,……,L
++ 1.set $a^{(1)}:=x^{(t)}$
++ 2.perform forward propagation to compute $a^{(l)}$ for l=2,3,……,L
 假设我们的网络如下：
 ![forward_propagation_in_NN]()
 进行前向传播后有：
@@ -34,12 +34,12 @@ triple sum中的i不代表第i个训练样本
 >+ $a^{(2)}= g(z^{(2)})$,$z^{(2)}=\Theta ^{1}a^{1}$,add $a\_{0}^{2}$
 >+ $a^{(3)}= g(z^{(3)}),z^{(3)}=\Theta ^{2}a^{2}$,add $a\_{0}^{3}$
 >+ $a^{(4)}= h_{\Theta }(x)=g(z^{(4)}),z^{(4)}=\Theta ^{3}a^{3}$
-+3. using $y_{j}^{(t)}$，compute $\delta \_{j}^{(L)}=a_{j}^{(L)}-y_{j}^{(t)}$, $\delta \_{j}^{(L)}$的维度为(输出层个数×1).
++ 3.using $y_{j}^{(t)}$，compute $\delta \_{j}^{(L)}=a_{j}^{(L)}-y_{j}^{(t)}$, $\delta \_{j}^{(L)}$的维度为(输出层个数×1).
 > 为得到最后一层之前的所有Δ值，我们使用一个公式来从右往左反向计算
-+4. compute $\delta ^{(L-1)},\delta ^{(L-2)},\cdots ,\delta ^{(2)},\delta ^{(l)}=((\Theta ^{(l)})^\mathrm{T}\delta ^{(l+1)}).*a^{(l)}.*(1-a^{(l)})$
++ 4.compute $\delta ^{(L-1)},\delta ^{(L-2)},\cdots ,\delta ^{(2)},\delta ^{(l)}=((\Theta ^{(l)})^\mathrm{T}\delta ^{(l+1)}).*a^{(l)}.*(1-a^{(l)})$
 > 上式可解释如下：第l层的δ值等于 下一层(l+1 layer)的δ值乘以l层的Θ矩阵，然后再点乘函数${g}'$,它是关于$z^{(l)}$的导数，${g}'(z^{(l)})=a^{(l)}.\*(1-a^{(l)})$.假设我们现在只有一对样本数据(x,y),反向传播的过程其实可以从**偏导数的链式求导**过程得到：
 $$\frac{\partial J(\theta )}{\partial a}\cdot\frac{\partial a}{\partial z},$$同样我们可以得到结果a-y.
-+5. 我们设置Δ的更新公式：$$\Delta _{i,j}^{(l)}:=\Delta _{i,j}^{(l)}+a_{j}^{(l)}\delta \_{i}^{(l+1)},$$ 
++ 5.我们设置Δ的更新公式：$$\Delta _{i,j}^{(l)}:=\Delta _{i,j}^{(l)}+a_{j}^{(l)}\delta \_{i}^{(l+1)},$$ 
 因此，我们Δ矩阵更新公式为：
 >+ $D_{i,j}^{(l)}:=\frac{1}{m}(\Delta \_{i,j}^{(l)}+\lambda \Theta \_{i,j}^{(l)}),$if j ≠ 0.
 >+ $D_{i,j}^{(l)}:=\frac{1}{m}\Delta \_{i,j}^{(l)},$ if j = 0.
