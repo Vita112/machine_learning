@@ -17,7 +17,7 @@ $h_{\Theta }(x)\_{k}$  代表 第k类输出的假设函数，是一个k-dimensio
 
 double sum:只是单纯把 在输出层的每一个单元的逻辑回归代价 相加起来<br>
 triple sum:只是单纯把 在整个网络中的所有的个体Θ的平方 相加起来<br>
-triple sum中的i不代表第i个训练样本
+triple sum中的i不代表训练样本i
 ## 2 backpropagation
 ### 2.1 backpropagation algorithm
 “backpropagation”是神经网络的专业术语，用于最小化代价函数，即求得$min_{\Theta }J(\Theta )$.我们将此转换为求代价函数偏导数问题，即求$\frac{\partial J(\Theta )}{\partial \Theta \_{i,j}^{(l)}}$.**接下来讲解如何求这个偏导数**：讲义图为
@@ -31,9 +31,9 @@ triple sum中的i不代表第i个训练样本
 ![forward_propagation_in_NN]()
 进行前向传播后有：
 >+ $a^{(1)} =x$
->+ $a^{(2)}= g(z^{(2)})$,$z^{(2)}=\Theta ^{1}a^{1}$,add $a\_{0}^{2}$
->+ $a^{(3)}= g(z^{(3)}),z^{(3)}=\Theta ^{2}a^{2}$,add $a\_{0}^{3}$
->+ $a^{(4)}= h_{\Theta }(x)=g(z^{(4)}),z^{(4)}=\Theta ^{3}a^{3}$
+>+ $a^{(2)}= g(z^{(2)})$, $z^{(2)}=\Theta ^{1}a^{1}$, add $a\_{0}^{2}$
+>+ $a^{(3)}= g(z^{(3)}), z^{(3)}=\Theta ^{2}a^{2}$, add $a\_{0}^{3}$
+>+ $a^{(4)}= h_{\Theta }(x)=g(z^{(4)}), z^{(4)}=\Theta ^{3}a^{3}$
 + 3.using $y_{j}^{(t)}$，compute $\delta \_{j}^{(L)}=a_{j}^{(L)}-y_{j}^{(t)}$, $\delta \_{j}^{(L)}$的维度为(输出层个数×1).
 > 为得到最后一层之前的所有Δ值，我们使用一个公式来从右往左反向计算
 + 4.compute $\delta ^{(L-1)},\delta ^{(L-2)},\cdots ,\delta ^{(2)}$,
