@@ -8,9 +8,13 @@
 + cost function
 
 $h_{\Theta }(x)\_{k}$  代表 第k类输出的假设函数，是一个k-dimensional vector。在神经网络中，代价函数是**逻辑回归代价函数的泛化**，为对比，写下逻辑回归的代价函数如下：
+
 ![cost_function_for_regularized_logistic_regression](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/cost_function_for_regularized_logistic_regression.png)
+
 在神经网络中，我们的代价函数稍微有些复杂，如下：
+
 ![cost_function_for_NN](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/cost_function_for_NN.png)
+
 由于可能面临多分类问题，公式中含有nested summations，嵌套求和先内部遍历求和，然后外部遍历求和。上式中第一项，内部求和求k从1到K的所有每一个逻辑回归算法的代价函数，然后按照输出的顺序，依次相加，其中$y_{k}^{(i)}$表示标签i对应的标注分类。第二项类似于逻辑回归中的正则化项，不同于二分类发问题，权重矩阵$\Theta ^{(L-1)}$不再是一个1×($s_{l}$+1)的矩阵，而应该是K×($s_{l}$+1)的矩阵，也就是 对应
 于output layer的参数矩阵$\Theta ^{(L-1)}$是当前矩阵，其行数等于K(最终输出层的节点数，即分类数)，行数等于 （当前层的节点数+1）。
 + note
@@ -21,6 +25,7 @@ triple sum中的i不代表训练样本i
 ## 2 backpropagation
 ### 2.1 backpropagation algorithm
 “backpropagation”是神经网络的专业术语，用于最小化代价函数，即求得$min_{\Theta }J(\Theta )$.直观来理解的话，就是首先计算最后一层的误差，然后再一层一层反向求出各层的误差，直到倒数第二层（第一层不存在误差）。我们将此转换为求代价函数偏导数问题，即求$\frac{\partial J(\Theta )}{\partial \Theta \_{i,j}^{(l)}}$.**接下来讲解如何求这个偏导数**：讲义图为
+
 ![compute_partial_derivative_of_J(Θ)_in_NN](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/compute_partial_derivative_of_J(%CE%98)_in_NN.png) 
 
 假设给定一个标注训练集$\\{(x^{(1)},y^{(1)})\cdots (x^{(m)},y^{(m)})\\}$,
@@ -28,7 +33,9 @@ triple sum中的i不代表训练样本i
 + 1.set $a^{(1)}:=x^{(t)}$
 + 2.perform forward propagation to compute $a^{(l)}$ for l=2,3,……,L。
 假设我们的网络总共只有四层，即L=4，且只有一个训练实例($x^{(1)},y^{(1)}$), 输出类别K=4，如下图：
+
 ![forward_propagation_in_NN](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/forward_propagation_in_NN.png)
+
 Forward propagation：：
 >+ $a^{(1)} =x$
 >+ $a^{(2)}= g(z^{(2)})$,  $z^{(2)}=\Theta ^{1}a^{1}$,  add $a\_{0}^{2}$
