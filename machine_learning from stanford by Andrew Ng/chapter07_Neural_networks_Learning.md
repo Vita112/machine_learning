@@ -17,28 +17,34 @@ $h_{\Theta }(x)\_{k}$  代表 第k类输出的假设函数，是一个k-dimensio
 
 double sum:只是单纯把 在输出层的每一个单元的逻辑回归代价 相加起来<br>
 triple sum:只是单纯把 在整个网络中的所有的个体Θ的平方 相加起来<br>
-triple sum中的i不代表第i个训练样本
+triple sum中的i不代表训练样本i
 ## 2 backpropagation
 ### 2.1 backpropagation algorithm
-“backpropagation”是神经网络的专业术语，用于最小化代价函数，即求得$min_{\Theta }J(\Theta )$.我们将此转换为求代价函数偏导数问题，即求$\frac{\partial J(\Theta )}{\partial \Theta \_{i,j}^{(l)}}$.**接下来讲解如何求这个偏导数**：讲义图为
+“backpropagation”是神经网络的专业术语，用于最小化代价函数，即求得$min_{\Theta }J(\Theta )$.直观来理解的话，就是首先计算最后一层的误差，然后再一层一层反向求出各层的误差，直到倒数第二层（第一层不存在误差）。我们将此转换为求代价函数偏导数问题，即求$\frac{\partial J(\Theta )}{\partial \Theta \_{i,j}^{(l)}}$.**接下来讲解如何求这个偏导数**：讲义图为
 ![compute_partial_derivative_of_J(Θ)_in_NN]() 
 
 假设给定一个标注训练集$\\{(x^{(1)},y^{(1)})\cdots (x^{(m)},y^{(m)})\\}$,
 + 对于所有的l，i，j，设定 $\Delta \_{i,j}^{(l)}:= 0$；for training example t=1 to m:
 + 1.set $a^{(1)}:=x^{(t)}$
-+ 2.perform forward propagation to compute $a^{(l)}$ for l=2,3,……,L
-假设我们的网络如下：
++ 2.perform forward propagation to compute $a^{(l)}$ for l=2,3,……,L。
+假设我们的网络总共只有四层，即L=4，且只有一个训练实例($x^{(1)},y^{(1)}$), 输出类别K=4，如下图：
 ![forward_propagation_in_NN]()
-进行前向传播后有：
+Forward propagation：：
 >+ $a^{(1)} =x$
->+ $a^{(2)}= g(z^{(2)})$,$z^{(2)}=\Theta ^{1}a^{1}$,add $a\_{0}^{2}$
->+ $a^{(3)}= g(z^{(3)}),z^{(3)}=\Theta ^{2}a^{2}$,add $a\_{0}^{3}$
->+ $a^{(4)}= h_{\Theta }(x)=g(z^{(4)}),z^{(4)}=\Theta ^{3}a^{3}$
-+ 3.using $y_{j}^{(t)}$，compute $\delta \_{j}^{(L)}=a_{j}^{(L)}-y_{j}^{(t)}$, $\delta \_{j}^{(L)}$的维度为(输出层个数×1).
+>+ $a^{(2)}= g(z^{(2)})$,  $z^{(2)}=\Theta ^{1}a^{1}$,  add $a\_{0}^{2}$
+>+ $a^{(3)}= g(z^{(3)}),  z^{(3)}=\Theta ^{2}a^{2}$,  add $a\_{0}^{3}$
+>+ $a^{(4)}= h_{\Theta }(x)=g(z^{(4)}),  z^{(4)}=\Theta ^{3}a^{3}$
++ 3.using $y_{j}^{(t)}$（实际值），compute $\delta \_{j}^{(L)}=a_{j}^{(L)}-y_{j}^{(t)}$, $\delta \_{j}^{(L)}$代表*激活单元的预测与实际值之间的误差*， 其维度为(输出层个数×1).
 > 为得到最后一层之前的所有Δ值，我们使用一个公式来从右往左反向计算
 + 4.compute $\delta ^{(L-1)},\delta ^{(L-2)},\cdots ,\delta ^{(2)}$,
-    $\delta ^{(l)}=((\Theta ^{(l)})^\mathrm{T}\delta ^{(l+1)}).\ast a^{(l)}.\ast (1-a^{(l)})$
-> 上式可解释如下：第l层的δ值等于 下一层(l+1 layer)的δ值乘以l层的Θ矩阵，然后再点乘函数${g}'$,它是关于$z^{(l)}$的导数，${g}'(z^{(l)})=a^{(l)}.\*(1-a^{(l)})$.假设我们现在只有一对样本数据(x,y),反向传播的过程其实可以从**偏导数的链式求导**过程得到：
+    $$\delta ^{(l)}=((\Theta ^{(l)})^\mathrm{T}\delta ^{(l+1)}).\ast a^{(l)}.\ast (1-a^{(l)}),$$
+> 上式可解释如下：第l层的δ值等于 下一层(l+1 layer)的δ值乘以l层的Θ矩阵，然后再点乘函数${g}'$,它是关于$z^{(l)}$的导数，${g}'(z^{(l)})=a^{(l)}.\*(1-a^{(l)})$.假设我们现在只有一个训练实例($x^{(1)},y^{(1)}$),首先有代价函数为：
+$J(\theta )=-ylogh(x)-(1-y)log(1-h(x))$，计算误差就是求J(θ)关于z的偏导数，计算公式为：
+$$\delta^{(l)}=\frac{\partial J(\theta )}{\partial z^{(l)}},$$ 使用链式法则，我们先推导$\delta^{(3)}$,$\delta^{(2)}$:
+$$\delta^{(3)}=\frac{\partial J(\theta )}{\partial z^{(3)}}=\frac{\partial J(\theta )}{\partial a^{(4)}}\cdot \frac{\partial a^{(4)}}{\partial z^{(4)}}\cdot \frac{\partial z^{(4)}}{\partial a^{(3)}}\cdot \frac{\partial a^{(3)}}{\partial z^{(3)}},$$
+![errorCalculationInBPA]()
+
+通过上述过程，我们发现反向传播的过程可以从**偏导数的链式求导**过程得到：
 $$\frac{\partial J(\theta )}{\partial a}\cdot\frac{\partial a}{\partial z},$$同样我们可以得到结果a-y.
 + 5.我们设置Δ的更新公式：
 $$\Delta \_{i,j}^{(l)}:=\Delta \_{i,j}^{(l)} + a\_{j}^{(l)}\delta \_{i}^{(l+1)},$$ 
