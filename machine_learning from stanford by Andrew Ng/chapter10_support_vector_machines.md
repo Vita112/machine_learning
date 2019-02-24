@@ -2,15 +2,15 @@
 ### 1.1 optimization objective
 + Alternative view of logistic regression
 我们对逻辑回归模型进行某些修改，来得到SVM。**First Step**，我们先回忆一下逻辑回归模型，如下图：
-![graph_of_LRModel]()
+![graph_of_LRModel](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/graph_of_LRModel.png)
 下图显示了：给定一个样本实例(x,y),代价函数与z值的分析图：
-![LRModel_with_one_single_sample]()
+![LRModel_with_one_single_sample](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/LRModel_with_one_single_sample.png)
 上图中的紫色的折线代表新的代价函数。**在LR中，当观察到一个正样本y=1时，试图给$\mathbf{\theta }^\mathrm{T}x$设置很大的值，这意味着代价函数
 $-log\frac{1}{1+e^{-(\mathbf{\theta }^\mathrm{T}x)}}$将变得很小。同理，当观察到一个负样本y=0时，试图给$\mathbf{\theta }^\mathrm{T}x$设置很小的值，这意味着代价函数
 $-log(1-\frac{1}{1+e^{-(\mathbf{\theta }^\mathrm{T}x)}})$将变得很小.**
 + support vector machine
 通过对LR的代价函数进行标记上的替换，我们得到了支持向量机的代价函数。如下图：
-![cost_function_for_SVM]()
+![cost_function_for_SVM](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/cost_function_for_SVM.png)
 在LR中，代价函数可以写为`A + λB`的形式，给与λ更大的值意味着给与B更大的权重；相对应的，在SVM中，代价函数的形式变为`cA + B`,给定c非常小的值意味着给与B更大的权重。我们也可以认为$c = \frac{1}{\lambda }$,但是，需要注意：这两个代价函数并不相等。<br>
 **SVM使用数据直接学习决策函数f(x)作为预测，是一种判别式模型。**
 ### 1.2 large margin intuition
@@ -22,15 +22,15 @@ $$ min\ \frac{1}{2}\sum_{i=1}^{m}(\theta \_{j})^{2}, $$
 s.t. $ \mathbf{\theta }^\mathrm{T}x^{(i)}\geq 1 $ if $ y^{(i)}=1,$
 $\mathbf{\theta }^\mathrm{T}x^{(i)}\leq -1$  if $ y^{(i)}=0.$
 通过下图，可以直观地理解SVM 又被称为最大间隔分类器：
-![intuition_to_Large_Margin]()
+![intuition_to_Large_Margin](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/intuition_to_Large_Margin.png)
 + Large margin classifier in presence of outliers
 如果给定正则化项c非常大的值，SVM的决策边界(也可以理解为最大间隔分离超平面)将会拟合甚至那些异常值，导致产生过拟合问题。
 ### 1.3 mathematics behind large margin classification
 + vector inner product
-![vector_inner_production]()
+![vector_inner_production](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/vector_inner_production.png)
 图中，|||u|表示向量的模长，p表示向量v在u上的投影。
 + SVM decision boundary
-![SVM_decision_boundary]()
+![SVM_decision_boundary](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/SVM_decision_boundary.png)
 从向量内积和向量模长的视角来看，SVM的优化问题可以写为：
 $$ min\ \frac{1}{2}\sum_{i=1}^{m}(\theta \_{j})^{2} = \frac{1}{2}\left \| \theta  \right \|^{2}, $$
 s.t. $ \mathbf{\theta }^\mathrm{T}x^{(i)} = p^{(i)}\cdot \left \| \theta  \right \| \geq 1 $ if $ y^{(i)}=1,$
