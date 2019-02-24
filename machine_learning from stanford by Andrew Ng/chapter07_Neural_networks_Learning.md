@@ -71,6 +71,7 @@ $$\frac{\partial J(\Theta )}{\partial \Theta \_{i,j}^{(l)}}=D_{i,j}^{(l)}$$
 #### 2.2.2 what is backpropagation doing？
 + 假设我们只有一个样本实例($x^{(i)},y^{(i)}$):
 ![backpropagation_with_a_single_example](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/backpropagation_with_a_single_example.png)
+
 一种直观理解反向传播的思想是：计算所有的$\delta \_{j}^{(l)}$，可以把这些项看作是激励值的误差。更正式的说法是：$\delta \_{j}^{(l)}$是cost(i)关于$z_{j}^{(l)}$的偏导数。此时的神经网络图如下：
 ![forward_propagation_and_backpropagation](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/forward_propagation_and_backpropagation.png)
 
@@ -79,17 +80,23 @@ $$\delta \_{2}^{(3)}=\Theta \_{12}^{(3)}\delta \_{1}^{(4)}$$
 ## 3 backpropagation in practice
 ### 3.1 implementation note:unrolling parameters matrices into vectors
 ![example_in_octave](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/example_in_octave.png)
+
 ![learning_algorithm_implementation_with_octave](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/learning_algorithm_implementation_with_octave.png)
 ### 3.2 gradient checking
 每次在实现反向传播，或者其他类似的梯度下降算法时，都可以使用梯度检查，以确信这些算法的正确性。
 + 当θ是一个向量参数时：
  ![partial_derivative_respect_to_θ_vector](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/partial_derivative_respect_to_%CE%B8_vector.png)
+ 
  ![gradient_descent_checking_implementation_with_octave](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/gradient_descent_checking_implementation_with_octave.png)
+ 
  使用梯度检查时，有一点需要注意:在训练分类器之前，应确保关掉你的梯度检查，这是因为*运行梯度检查的计算量十分大，会导致程序运行很慢*，而反向传播算法是一个比梯度检验更快的计算导数的方法，因此，*一旦你确定了反向传播的实现是正确的，要确定在训练算法时关掉梯度检验。*
 ### 3.3 random initialization
 在逻辑回归中，将θ的初始值设置为0是可行的，但这在训练神经网络的时候，却并不可行。此时，所有的权重都相同，阻止了神经网络进行有效的学习。
+
 ![zero_initialization_case](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/zero_initialization_case.png)
+
 为解决这个问题，在神经网络的训练中，使用随机初始化参数的方法，以打破上图的对称性(symmetry breaking).如下图：
+
 ![random_initialization](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/random_initialization.png)
 ### 3.4 putting it together
 
