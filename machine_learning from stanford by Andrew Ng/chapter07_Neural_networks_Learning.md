@@ -100,7 +100,7 @@ $$\delta \_{2}^{(3)}=\Theta \_{12}^{(3)}\delta \_{1}^{(4)}$$
 ![random_initialization](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/random_initialization.png)
 ### 3.4 putting it together
 + training a neural network
-![neural network architecture]()
+![neural network architecture](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/neural%20network%20architecture.png)
 + steps to train a neural network
 > 1. randomly initialize weights
 > 2. implement forward propagation to get $h_{\theta }(x^{(i)})$ for any $x^{(i)$
