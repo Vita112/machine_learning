@@ -28,8 +28,8 @@ $-log(1-\frac{1}{1+e^{-(\mathbf{\theta }^\mathrm{T}x)}})$将变得很小.**
 $$min\ c\sum_{i=1}^{m}\[y^{(i)}cost_{1}(\mathbf{\theta }^\mathrm{T}x^{(i)})+(1-y^{(i)})cost_{0}(\mathbf{\theta }^\mathrm{T}x^{(i)})]+\frac{1}{2}\sum_{i=1}^{m}(\theta \_{j})^{2}$$
 假设给定 c 一个非常大的值，为使得代价函数值最小，我们希望找到一个 使得第一项为0的最优解。此时，代价函数最小化问题转换成一个条件约束最优化问题，如下：
 $$ min\ \frac{1}{2}\sum_{i=1}^{m}(\theta \_{j})^{2}, $$
-$$ s.t.  \mathbf{\theta }^\mathrm{T}x^{(i)}\geq 1 $ if $ y^{(i)}=1,$$
-$$\mathbf{\theta }^\mathrm{T}x^{(i)}\leq -1$  if $ y^{(i)}=0.$$
+$$ s.t.\  \mathbf{\theta }^\mathrm{T}x^{(i)}\geq 1,\ if  y^{(i)}=1,$$
+$$\mathbf{\theta }^\mathrm{T}x^{(i)}\leq -1,\  if  y^{(i)}=0.$$
 通过下图，可以直观地理解SVM 又被称为最大间隔分类器：
 
 ![intuition_to_Large_Margin](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/intuition_to_Large_Margin.png)
@@ -48,8 +48,8 @@ $$\mathbf{\theta }^\mathrm{T}x^{(i)}\leq -1$  if $ y^{(i)}=0.$$
 
 从向量内积和向量模长的视角来看，SVM的优化问题可以写为：
 $$ min\ \frac{1}{2}\sum_{i=1}^{m}(\theta \_{j})^{2} = \frac{1}{2}\left \| \theta  \right \|^{2}, $$
-$$ s.t. \mathbf{\theta }^\mathrm{T}x^{(i)} = p^{(i)}\cdot \left \| \theta  \right \| \geq 1 $ if $ y^{(i)}=1,$$ 
-$$ \mathbf{\theta }^\mathrm{T}x^{(i)} = p^{(i)}\cdot \left \| \theta  \right \|\leq -1$  if $ y^{(i)}=0.$$ 
+$$ s.t.\ \mathbf{\theta }^\mathrm{T}x^{(i)} = p^{(i)}\cdot \left \| \theta  \right \| \geq 1,\ if  y^{(i)}=1,$$ 
+$$ \mathbf{\theta }^\mathrm{T}x^{(i)} = p^{(i)}\cdot \left \| \theta  \right \|\leq -1,\  if  y^{(i)}=0.$$ 
 此处向量θ是垂直于决策边界的法向量。当y=1时，我们希望$ p^{(i)}\cdot \left \| \theta  \right \| \geq 1$，如果$ p^{(i)}$ 的值太小，意味着$\left \| \theta  \right \|$需要取较大的值，这不是我们的优化目标，因此上面的左图并不是我们的最优解；相反，右图得到较大的$ p^{(i)}$ ，相应的，我们可以得到较小的$\left \| \theta  \right \|$值。
 ## 2 Kernels
 ### 2.1 Kernels Ⅰ
