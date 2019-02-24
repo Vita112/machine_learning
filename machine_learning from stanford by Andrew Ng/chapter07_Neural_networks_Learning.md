@@ -99,5 +99,15 @@ $$\delta \_{2}^{(3)}=\Theta \_{12}^{(3)}\delta \_{1}^{(4)}$$
 
 ![random_initialization](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/random_initialization.png)
 ### 3.4 putting it together
-
++ training a neural network
+![neural network architecture]()
++ steps to train a neural network
+> 1. randomly initialize weights
+> 2. implement forward propagation to get $h_{\theta }(x^{(i)})$ for any $x^{(i)$
+> 3. implement code to compute cost function J(Θ)
+> 4. implement backpropagation to compute partial derivatives $\frac{\partial J(\Theta )}{\partial \Theta \_{jk}^{l}}$
+在第4步中，具体地，我们使用一个for循环遍历m个样本点，对每一个样本点，我们都使用向前传播和反向传播进行迭代，得到神经网络中每一层中每一个单元对应的激励值$a^{(l)}$和δ值。
+> 5. use gradient checking to compare $\frac{\partial J(\Theta )}{\partial \Theta \_{jk}^{l}}$ vs. using numerical estimate of gradient of J(Θ) 
+> 6. use gradient descent or advanced optimization method with backpropagation to try to minimize J(Θ) as a function of parameters Θ
 ## 4 application of neural networks-autonomous driving
+just see the video
