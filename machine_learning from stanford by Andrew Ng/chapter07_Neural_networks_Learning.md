@@ -64,9 +64,33 @@ $$\frac{\partial J(\Theta )}{\partial \Theta \_{i,j}^{(l)}}=D_{i,j}^{(l)}$$
 
 
 ### 2.2 backpropagation intuition 
+#### 2.2.1 forward propagation
+首先，我们复习一下前向传播到底做了哪些工作：
+![a_closer_look_at_into_forward_propagation]()
+如图，神经网络有2个隐藏层，$z^(i)$代表输入层经过加权变换后得到的值，$a^(i)$代表sigmoid激活函数，经过压缩后的值属于(0，1)，经过最后一次加权后再使用sigmoid函数操作，得到最终的输出结果。图中给出了 使用前向传播计算 $z_{1}^{(3)}$的步骤。
+#### 2.2.2 what is backpropagation doing？
++ 假设我们只有一个样本实例($x^{(i)},y^{(i)}$):
+![backpropagation_with_a_single_example]()
+一种直观理解反向传播的思想是：计算所有的$\delta \_{j}^{(l)}$，可以把这些项看作是激励值的误差。更正式的说法是：$\delta \_{j}^{(l)}$是cost(i)关于$z_{j}^{(l)}$的偏导数。此时的神经网络图如下：
+![forward_propagation_and_backpropagation]()
+
+我们以$\delta \_{2}^{(2)},\delta \_{2}^{(3)}$的计算为例：$$\delta \_{2}^{(2)}=\Theta \_{12}^{(2)}\delta \_{1}^{(3)}+\Theta \_{22}^{(2)}\delta \_{2}^{(3)},$$
+$$\delta \_{2}^{(3)}=\Theta \_{12}^{(3)}\delta \_{1}^{(4)}$$
 ## 3 backpropagation in practice
-### 3.1 implementation note:unrolling parameters
+### 3.1 implementation note:unrolling parameters matrices into vectors
+![example_in_octave]()
+![learning_algorithm_implementation_with_octave]()
 ### 3.2 gradient checking
+每次在实现反向传播，或者其他类似的梯度下降算法时，都可以使用梯度检查，以确信这些算法的正确性。
++ 当θ是一个向量参数时：
+ ![partial_derivative_respect_to_θ_vector]()
+ ![gradient_descent_checking_implementation_with_octave]()
+ 使用梯度检查时，有一点需要注意:在训练分类器之前，应确保关掉你的梯度检查，这是因为*运行梯度检查的计算量十分大，会导致程序运行很慢*，而反向传播算法是一个比梯度检验更快的计算导数的方法，因此，*一旦你确定了反向传播的实现是正确的，要确定在训练算法时关掉梯度检验。*
 ### 3.3 random initialization
+在逻辑回归中，将θ的初始值设置为0是可行的，但这在训练神经网络的时候，却并不可行。此时，所有的权重都相同，阻止了神经网络进行有效的学习。
+![zero_initialization_case]()
+为解决这个问题，在神经网络的训练中，使用随机初始化参数的方法，以打破上图的对称性(symmetry breaking).如下图：
+![random_initialization]()
 ### 3.4 putting it together
+
 ## 4 application of neural networks-autonomous driving
