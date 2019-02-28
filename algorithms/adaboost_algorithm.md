@@ -8,7 +8,12 @@
 [PPT2_variation_principle_and_adaboost]()
 ## 1 提升（boosting）方法
 ### 1.1 基本思路
-   boosting方法在分类问题中，通过改变训练样本的权重，学习多个基本分类器，最后通过线性组合提高分类性能，得到最终分类器。首先引入两个概念：**strongly learnable**和**weakly learnable**，关于强可学习：a problem is learnable or strongly learnable if there exists an algorithm that outputs a learner *h* in polynomial time such that for all δ ＞0， ε≤0.5，$$P(E_{x}\sim D[I[h(x)\neq f(x)]]< \varepsilon  )\geqslant 1-\delta $$.也就是说，存在一个多项式算法，能够有很大的把握得到一个误差很小的模型。关于弱可学习：一个概念，存在一个多项式的学习算法能够学习他，学习的正确率仅比随机猜测的稍好一些，称这个概念为弱可学习的。1990年，Schapire证明，在PAC学习的框架下，强可学习与弱可学习是可以等价的。在boosting方法中，需要解决2个问题：① *在每一轮，如何改变训练数据的权重分布；* ② *如何将弱分类器组合成一个强分类器。*下面的adaboost方法较好的解决了这2个问题。
+   boosting方法在分类问题中，通过改变训练样本的权重，学习多个基本分类器，最后通过线性组合提高分类性能，得到最终分类器。首先引入两个概念：**strongly learnable**和**weakly learnable**，关于强可学习：a problem is learnable or strongly learnable if there exists an algorithm that outputs a learner *h* in polynomial time such that for all δ ＞0， ε≤0.5,
+$$P(E_{x}\sim D\[I\[h(x)\neq f(x)]]< \varepsilon  )\geqslant 1-\delta .$$
+也就是说，存在一个多项式算法，能够有很大的把握得到一个误差很小的模型。关于弱可学习：一个概念，存在一个多项式的学习算法能够学习他，学习的正确率仅比随机猜测的稍好一些，称这个概念为弱可学习的。1990年，Schapire证明，在PAC学习的框架下，强可学习与弱可学习是可以等价的。在boosting方法中，需要解决2个问题：
+ > ① *在每一轮，如何改变训练数据的权重分布；* <br>
+ > ② *如何将弱分类器组合成一个强分类器。*
+ 下面的adaboost方法较好的解决了这2个问题。
 ## 2 Adaboost 原理
 ### 2.1 什么是Adaboost？
 Adaboost，英文全称为‘Adapltive Boosting’(自适应增强)，是一种将弱学习器提升为强学习器的集成学习算法。它通过改变训练样本的权值，学习多个分类器，然后将分类器进行线性组合成强分类器。具体的，**改变训练数据的权重分布**：提高前一轮训练中被错误分类的数据的权值，降低正确分类数据的权值，使得被错误分类的数据在下一轮训练中更受关注；然后根据不同分布调弱学习算法得到一系列弱分类器；再**使用加权多数表决的方法，将弱分类器进行线性组合**，具体组合方法是：误差率小的分类器，增大其权值；误差率大的分类器，减小其权值。
@@ -19,7 +24,8 @@ Adaboost，英文全称为‘Adapltive Boosting’(自适应增强)，是一种�
 >+ 3. 使用加权多数表决方法，组合训练得到的弱分类器，得到强分类器。提高分类误差率小的弱分类器的权重，降低分类误差率大的弱分类器的权重。
 
 ### 2.2 Adaboost算法流程
-给定一个训练数据集 $T=\{{(x_{1},y_{1}),(x_{2},y_{2}),\cdots ,(x_{N},y_{N})\}}$,其中$y_{i}\subset \{{-1,1\}}$.流程如下：
+给定一个训练数据集 $T=\{{(x_{1},y_{1}),(x_{2},y_{2}),\cdots ,(x_{N},y_{N})\}}$, 其中 $y_{i}\subset \{{-1,1\}}.$
+流程如下：
 + 步骤1：初始化训练样本的权值分布，如下：
 $$D_{1}= (w_{11},w_{12},\cdots ,w_{1i},\cdots ,w_{1N}),\\w_{1i}=\frac{1}{N},i=1,2,\cdots ,N$$
 + 步骤2：反复学习多个弱分类器，多轮迭代执行以下操作。m表示迭代次数，且m = 1，2，……，M
