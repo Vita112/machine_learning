@@ -9,7 +9,7 @@
 ## 1 提升（boosting）方法
 ### 1.1 基本思路
    boosting方法在分类问题中，通过改变训练样本的权重，学习多个基本分类器，最后通过线性组合提高分类性能，得到最终分类器。首先引入两个概念：**strongly learnable**和**weakly learnable**，关于强可学习：a problem is learnable or strongly learnable if there exists an algorithm that outputs a learner *h* in polynomial time such that for all δ ＞0， ε≤0.5,
-$$P(E_{x}\sim D(I(h(x)\neq f(x))) < \varepsilon ) \geqslant 1-\delta .$$
+$$ P(E_{x}\sim D(I(h(x)\neq f(x))) < \varepsilon ) \geqslant 1-\delta $$
 也就是说，存在一个多项式算法，能够有很大的把握得到一个误差很小的模型。关于弱可学习：一个概念，存在一个多项式的学习算法能够学习他，学习的正确率仅比随机猜测的稍好一些，称这个概念为弱可学习的。1990年，Schapire证明，在PAC学习的框架下，强可学习与弱可学习是可以等价的。在boosting方法中，需要解决2个问题：
  > ① *在每一轮，如何改变训练数据的权重分布；* <br>
  > ② *如何将弱分类器组合成一个强分类器。*
@@ -44,9 +44,9 @@ $$ D_{m+1}= (w_{m+1,1},w_{m+1,2},\cdots ,w_{m+1,i},\cdots ,w_{m+1,N}), $$
 $$ w_{m+1,i}=\frac{w_{mi}}{Z_{m}}exp(-\alpha \_{m}y_{i}G_{m}(x_{i})), i=1,2,\cdots ,N $$
 $$Z_{m}=\sum_{i=1}^{N}w_{mi}exp(-\alpha \_{m}y_{i}G_{m}(x_{i})).$$
 上面，$Z_{m}$是规范化因子，我们也可以通过以下步骤将其化简：
-$$Z_{m}=\sum_{i=1}^{N}w_{mi}exp(-\alpha \_{m}y_{i}G_{m}(x_{i}))\
-=\sum_{i=1}^{N}w_{mi}e^{-\alpha \_{m}}I(G_{m}(x_{i})\
-= y_{i})+\sum_{i=1}^{N}w_{mi}e^{\alpha \_{m}}I(G_{m}(x_{i})\neq y_{i})\
+$$Z_{m}=\sum_{i=1}^{N}w_{mi}exp(-\alpha \_{m}y_{i}G_{m}(x_{i}))\\\\
+=\sum_{i=1}^{N}w_{mi}e^{-\alpha \_{m}}I(G_{m}(x_{i})\\\\
+= y_{i})+\sum_{i=1}^{N}w_{mi}e^{\alpha \_{m}}I(G_{m}(x_{i})\neq y_{i})\\\\
 =(1-e_{m})e^{-\alpha \_{m}}+e_{m}e^{\alpha \_{m}},$$
 又
 $$\alpha \_{m}=\frac{1}{2}log\frac{1-e_{m}}{e_{m}},$$
@@ -72,10 +72,15 @@ $$\frac{1}{N}\sum_{i=1}^{N}I(G(x_{i})\neq y_{i})\leq \frac{1}{N}\sum_{i}exp(-y_{
 ## 3 加法模型和前向分步算法
 ### 3.1 加法模型 additive model
 考虑加法模型
-$$f(x)=\sum_{m=1}^{M}\beta \_{m}b(x;\gamma \_{m}),$$其中，$b(x;\gamma \_{m})为基函数，$\gamma \_{m}$为基函数的参数，$\beta \_{m}$为基函数的系数。在给定训练数据及损失函数L(y,f(x))的条件下，学习加法模型成为经验风险极小化，即损失函数极小化问题：
-$$min_{(\beta \_{m},\gamma \_{m})}\sum_{i=1}^{N}L(y_{i},\sum_{m=1}^{M}\beta \_{m}b(x;\gamma \_{m})).$$
-我们可以使用forward stagewise algorithm 简化这个复杂的优化问题。具体地，从前向后，每一次只学习一个基函数及其系数，即每步只需优化如下损失函数：
-$$min_{(\beta ,\gamma)}\sum_{i=1}^{N}L(y_{i},\beta b(x;\gamma)).$$
+$$f(x)=\sum_{m=1}^{M}\beta \_{m}b(x;\gamma \_{m}),$$
+其中，$b(x;\gamma \_{m})$ 为基函数，$\gamma \_{m}$ 为基函数的参数, $\beta \_{m}$ 为基函数的系数。在给定训练数据及损失函数L(y,f(x))的条件下，学习加法模型成为经验风险极小化，即损失函数极小化问题：
+$$min_{(\beta \_{m},\gamma \_{m})}\sum_{i=1}^{N}L(y_{i},\sum_{m=1}^{M}\beta \_{m}b(x;\gamma \_{m}))$$
+
+我们可以使用forward stagewise algorithm 简化这个复杂的优化问题。
+具体地，从前向后，每一次只学习一个基函数及其系数，即每步只需优化如下损失函数：
+
+$$min_{(\beta ,\gamma)}\sum_{i=1}^{N}L(y_{i},\beta b(x;\gamma))$$
+
 ### 3.2 前向分步算法forward stagewise algorithm
 > input：训练数据集$T={(x_{1},y_{1}),(x_{2},y_{2}),\cdots (x_{N},y_{N})};$ 损失函数L(y,f(x));基函数集{b(x;γ)}<br>
 > ouput:加法模型 f(x)
@@ -111,6 +116,7 @@ $$G_{m}^{\*}(x)=arg\ min(G)\sum_{i=1}^{N}\bar{w_{mi}}I(y_{i}\neq G(x_{i})).$$
 + 2. 求$\alpha \_{m}^{\*}$,即求 损失函数$L(y_{i},f(x_{i}))$对$\alpha \_{m}$的偏导数，并令其为零。数学推到步骤如下：
 
 ![adaboost_Loss_function](https://github.com/Vita112/machine_learning/blob/master/img/adaboost_Loss_function.gif)
+
 对 $\alpha \_{m}$ 求偏导并使导数为0，有
 $$(e_{m}-1)e^{-\alpha \_{m}}+e_{m}e^{\alpha \_{m}}=0,$$
 即
