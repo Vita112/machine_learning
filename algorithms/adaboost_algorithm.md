@@ -53,7 +53,39 @@ $$\frac{1}{N}\sum_{i=1}^{N}I(G(x_{i})\neq y_{i})\leq \frac{1}{N}\sum_{i}exp(-y_{
 上式前半部分：<br>
 当$G(x_{i})\neq y_{i}$时，$y_{i}f(x_{i})<0$,于是，$exp(-y_{i}f(x_{i}))\geq 1$.<br>
 上式后半部分：<br>
+![to_get_error_boundary_of_AdaBoost_algorithm](https://github.com/Vita112/machine_learning/blob/master/img/to_get_error_boundary_of_AdaBoost_algorithm.gif)
 
+**这个定理说明：可以在每一轮选取适当的$G_m$，使得$Z_m$最小，从而使得训练误差下降最快。**
 
+## 3 加法模型和前向分步算法
+### 3.1 加法模型 additive model
+考虑加法模型
+$$f(x)=\sum_{m=1}^{M}\beta \_{m}b(x;\gamma \_{m}),$$其中，$b(x;\gamma \_{m})为基函数，$\gamma \_{m}$为基函数的参数，$\beta \_{m}$为基函数的系数。在给定训练数据及损失函数L(y,f(x))的条件下，学习加法模型成为经验风险极小化，即损失函数极小化问题：
+$$min_{(\beta \_{m},\gamma \_{m})}\sum_{i=1}^{N}L(y_{i},\sum_{m=1}^{M}\beta \_{m}b(x;\gamma \_{m})).$$
+我们可以使用forward stagewise algorithm 简化这个复杂的优化问题。具体地，从前向后，每一次只学习一个基函数及其系数，即每步只需优化如下损失函数：
+$$min_{(\beta ,\gamma)}\sum_{i=1}^{N}L(y_{i},\beta b(x;\gamma)).$$
+### 3.2 前向分步算法forward stagewise algorithm
+> input：训练数据集$T={(x_{1},y_{1}),(x_{2},y_{2}),\cdots (x_{N},y_{N})};$ 损失函数L(y,f(x));基函数集{b(x;γ)}<br>
+> ouput:加法模型 f(x)
 
++ 1. 初始化$f_{0}(x)=0$
++ 2. 对于m=1,2,……,M
+> a. 极小化损失函数
+$$(\beta \_{m},\gamma \_{m})=arg\ min_{(\beta ,\gamma )}\sum_{i=1}^{N}L(y_{i},f_{m-1}(x_{i})+\beta b(x_{i};\gamma ))$$
+得到参数$\beta \_{m},\gamma \_{m}).$
+> b. 更新
+$$f_{m}(x)=f_{m-1}(x_{i})+\beta_{m} b(x_{i};\gamma_{m}).$$
+
++ 3. 得到加法模型
+$$f(x)=f_{M}(x)=\sum_{m=1}^{M}\beta_{m} b(x_{i};\gamma_{m}).$$
+
+### 3.3 前向分步算法与AdaBoost算法
+AdaBoost algorithm 是前向分步算法的特例，其中，模型是由基本分类器组成的加法模型，损失函数为exp损失函数(exponential loss function):
+$$L(y,f(x))=exp(-yf(x)).$$在AdaBoost算法中，第m轮迭代后的模型可以表示为：
+$$f_{m}(x)=f_{m-1}(x)+\alpha \_{m}G_{m}(x).$$
+**我们的优化目标是:通过前向分步算法得到的$\alpha \_{m}$, $G_{m}(x)$，使得$f_{m}(x)$在训练数据及上的指数损失函数最小**，即
+$$(\alpha \_{m},G_{m}(x))=arg\ min_{(\alpha ,G)}\sum_{i=1}^{N}exp\[-y_{i}(f_{m-1}(x_{i})+\alpha G(x_{i}))],$$
+通过简化，我们得到
+$$(\alpha \_{m},G_{m}(x))=arg\ min_{(\alpha ,G)}\sum_{i=1}^{N}\bar{w_{mi}}exp\[-y_{i}\alpha G(x_{i}))],$$
+其中，$\bar{w_{mi}}$可以表示为：![]()
 
