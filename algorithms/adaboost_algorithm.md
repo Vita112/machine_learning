@@ -9,7 +9,7 @@
 ## 1 提升（boosting）方法
 ### 1.1 基本思路
    boosting方法在分类问题中，通过改变训练样本的权重，学习多个基本分类器，最后通过线性组合提高分类性能，得到最终分类器。首先引入两个概念：**strongly learnable**和**weakly learnable**，关于强可学习：a problem is learnable or strongly learnable if there exists an algorithm that outputs a learner *h* in polynomial time such that for all δ ＞0， ε≤0.5,
-$$P(E_{x}\sim D\[I\[h(x)\neq f(x)]]< \varepsilon ) \geqslant 1-\delta .$$
+$$P(E_{x}\sim D(I(h(x)\neq f(x))) < \varepsilon ) \geqslant 1-\delta .$$
 也就是说，存在一个多项式算法，能够有很大的把握得到一个误差很小的模型。关于弱可学习：一个概念，存在一个多项式的学习算法能够学习他，学习的正确率仅比随机猜测的稍好一些，称这个概念为弱可学习的。1990年，Schapire证明，在PAC学习的框架下，强可学习与弱可学习是可以等价的。在boosting方法中，需要解决2个问题：
  > ① *在每一轮，如何改变训练数据的权重分布；* <br>
  > ② *如何将弱分类器组合成一个强分类器。*
@@ -37,16 +37,19 @@ $$e_{m}=P(G_{m}(x)\neq y_{i})=\sum_{i=1}^{N}w_{mi}I(G_{m}(x)\neq y_{i}),$$
 c. 计算$G_{m}(x)$的系数：
 $$\alpha \_{m}=\frac{1}{2}log\frac{1-e_{m}}{e_{m}},$$
 
-**通过公式我们有：当 $e_{m}\leq \frac{1}{2}$ 时,随着 $e_{m}$ 越小, $\alpha \_{m}$ 会逐渐增大。**也就是说，给予在训练数据集上误差率小的弱分类器较高的权值。
+**通过公式我们有：当 $e_{m}\leq \frac{1}{2}$ 时,随着 $e_{m}$ 越小, $\alpha \_{m}$ 会逐渐增大**.
+也就是说，给予在训练数据集上误差率小的弱分类器较高的权值。<br>
 d. 更新训练数据集的权重分布：
 $$ D_{m+1}= (w_{m+1,1},w_{m+1,2},\cdots ,w_{m+1,i},\cdots ,w_{m+1,N}), $$
 $$ w_{m+1,i}=\frac{w_{mi}}{Z_{m}}exp(-\alpha \_{m}y_{i}G_{m}(x_{i})), i=1,2,\cdots ,N $$
 $$Z_{m}=\sum_{i=1}^{N}w_{mi}exp(-\alpha \_{m}y_{i}G_{m}(x_{i})).$$
 上面，$Z_{m}$是规范化因子，我们也可以通过以下步骤将其化简：
-$$Z_{m}=\sum_{i=1}^{N}w_{mi}exp(-\alpha \_{m}y_{i}G_{m}(x_{i}))\\
-=\sum_{i=1}^{N}w_{mi}e^{-\alpha \_{m}}I(G_{m}(x_{i})= y_{i})+\sum_{i=1}^{N}w_{mi}e^{\alpha \_{m}}I(G_{m}(x_{i})\neq y_{i})\\
+$$Z_{m}=\sum_{i=1}^{N}w_{mi}exp(-\alpha \_{m}y_{i}G_{m}(x_{i}))\
+=\sum_{i=1}^{N}w_{mi}e^{-\alpha \_{m}}I(G_{m}(x_{i})\
+= y_{i})+\sum_{i=1}^{N}w_{mi}e^{\alpha \_{m}}I(G_{m}(x_{i})\neq y_{i})\
 =(1-e_{m})e^{-\alpha \_{m}}+e_{m}e^{\alpha \_{m}},$$
-又$$\alpha \_{m}=\frac{1}{2}log\frac{1-e_{m}}{e_{m}},$$
+又
+$$\alpha \_{m}=\frac{1}{2}log\frac{1-e_{m}}{e_{m}},$$
 代入上式化简后得到：
 $$Z_{m}=2\sqrt{e_{m}(1-e_{m})}$$
 
@@ -64,7 +67,7 @@ $$\frac{1}{N}\sum_{i=1}^{N}I(G(x_{i})\neq y_{i})\leq \frac{1}{N}\sum_{i}exp(-y_{
 上式后半部分：<br>
 ![to_get_error_boundary_of_AdaBoost_algorithm](https://github.com/Vita112/machine_learning/blob/master/img/to_get_error_boundary_of_AdaBoost_algorithm.gif)
 
-**这个定理说明：可以在每一轮选取适当的$G_m$，使得$Z_m$最小，从而使得训练误差下降最快。**
+**这个定理说明：可以在每一轮选取适当的$G_m$，使得$Z_m$最小，从而使得训练误差下降最快**.
 
 ## 3 加法模型和前向分步算法
 ### 3.1 加法模型 additive model
@@ -97,6 +100,7 @@ $$(\alpha \_{m},G_{m}(x))=arg\ min_{(\alpha ,G)}\sum_{i=1}^{N}exp\[-y_{i}(f_{m-1
 通过简化，我们得到
 $$(\alpha \_{m},G_{m}(x))=arg\ min_{(\alpha ,G)}\sum_{i=1}^{N}\bar{w_{mi}}exp\[-y_{i}\alpha G(x_{i}))],$$
 其中，$\bar{w_{mi}}$可以表示为：
+
 ![bar{w_m-1,i}](https://github.com/Vita112/machine_learning/blob/master/img/bar%7Bw_m-1%2Ci%7D.gif)
 
 **下面分别求出使得损失函数最小的$\alpha \_{m}$, $G_{m}(x)$，** 首先，
@@ -107,10 +111,11 @@ $$G_{m}^{\*}(x)=arg\ min(G)\sum_{i=1}^{N}\bar{w_{mi}}I(y_{i}\neq G(x_{i})).$$
 + 2. 求$\alpha \_{m}^{\*}$,即求 损失函数$L(y_{i},f(x_{i}))$对$\alpha \_{m}$的偏导数，并令其为零。数学推到步骤如下：
 
 ![adaboost_Loss_function](https://github.com/Vita112/machine_learning/blob/master/img/adaboost_Loss_function.gif)
-对$$\alpha \_{m}$求偏导并使导数为0，有
+对 $\alpha \_{m}$ 求偏导并使导数为0，有
 $$(e_{m}-1)e^{-\alpha \_{m}}+e_{m}e^{\alpha \_{m}}=0,$$
-即$$e_{m}-1+e_{m}e^{2\alpha \_{m}}=0,$$
-$$ e^{2\alpha \_{m}}=\frac{1-e_{m}}{e_{m}},$$
+即
+$$e_{m}-1+e_{m}e^{2\alpha \_{m}}=0,$$
+$$e^{2\alpha \_{m}}=\frac{1-e_{m}}{e_{m}},$$
 最后得到，
 $$\alpha \_{m}^{\*}=\frac{1}{2}log\frac{1-e_{m}}{e_{m}}.$$
 我们发现，求解出来的最优的$\alpha \_{m}^{\*}$就是 AdaBoost算法中的基本分类器的系数。
