@@ -87,5 +87,27 @@ $$f_{m}(x)=f_{m-1}(x)+\alpha \_{m}G_{m}(x).$$
 $$(\alpha \_{m},G_{m}(x))=arg\ min_{(\alpha ,G)}\sum_{i=1}^{N}exp\[-y_{i}(f_{m-1}(x_{i})+\alpha G(x_{i}))],$$
 通过简化，我们得到
 $$(\alpha \_{m},G_{m}(x))=arg\ min_{(\alpha ,G)}\sum_{i=1}^{N}\bar{w_{mi}}exp\[-y_{i}\alpha G(x_{i}))],$$
-其中，$\bar{w_{mi}}$可以表示为：![]()
+其中，$\bar{w_{mi}}$可以表示为：![bar{w_m-1,i}](https://github.com/Vita112/machine_learning/blob/master/img/bar%7Bw_m-1%2Ci%7D.gif)
 
+**下面分别求出使得损失函数最小的$\alpha \_{m}$, $G_{m}(x)$，** 首先，
++ 1. 求$G_{m}^{\*}(x)$：
+
+实际上，求最优的$G_{m}^{\*}$，就是AdaBoost算法的基本分类器，因为它是使得 第m轮加权训练数据分类误差最小的基本分类器。公式表示如下：
+$$G_{m}^{\*}(x)=arg\ min(G)\sum_{i=1}^{N}\bar{w_{mi}}I(y_{i}\neq G(x_{i})).$$
++ 2. 求$\alpha \_{m}^{\*}$,即求 损失函数$L(y_{i},f(x_{i}))$对$$\alpha \_{m}$的偏导数，并令其为零。数学推到步骤如下：
+
+![adaboost_Loss_function]()
+对$$\alpha \_{m}$求偏导并使导数为0，有
+$$(e_{m}-1)e^{-\alpha \_{m}}+e_{m}e^{\alpha \_{m}}=0,$$
+即$$e_{m}-1+e_{m}e^{2\alpha _{m}}=0,\\
+e^{2\alpha \_{m}}=\frac{1-e_{m}}{e_{m}},\\$$
+最后得到，
+$$\alpha \_{m}^{\*}=\frac{1}{2}log\frac{1-e_{m}}{e_{m}}.$$
+我们发现，求解出来的最优的$\alpha \_{m}^{\*}$就是 AdaBoost算法中的基本分类器的系数。
++ 3. 权值更新
+
+在简化后的损失函数中，我们令
+$$\bar{w_{mi}}=exp\[-y_{i}f_{m-1}(x_{i})],$$
+根据上文中的推导，我们很容易得到
+$$\bar{w_{m+1,i}}=\bar{w_{m,i}}exp\[-y_{i}\alpha _{m}G_{m}(x)].$$
+这与adaboost算法的样本权值更新规则一致，只相差规范化因子，因而**等价**。
