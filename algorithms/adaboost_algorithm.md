@@ -29,16 +29,31 @@ b. 计算$G_{m}(x)$在训练数据集上的分类误差率：
 $$e_{m}=P(G_{m}(x)\neq y_{i})=\sum_{i=1}^{N}w_{mi}I(G_{m}(x)\neq y_{i}),$$
 c. 计算$G_{m}(x)$的系数：
 $$\alpha \_{m}=\frac{1}{2}log\frac{1-e_{m}}{e_{m}},$$
-通过公式我们有：当$e_{m}\leq \frac{1}{2}$时,$e_{m}$越小，$\alpha \_{m}$会逐渐增大。
+**通过公式我们有：当$e_{m}\leq \frac{1}{2}$时,随着$e_{m}$越小，$\alpha \_{m}$会逐渐增大。**也就是说，给予在训练数据集上误差率小的弱分类器较高的权值。
 d. 更新训练数据集的权重分布：
 $$D_{m+1}= (w_{m+1,1},w_{m+1,2},\cdots ,w_{m+1,i},\cdots ,w_{m+1,N}),$$
 $$w_{m+1,i}=\frac{w_{mi}}{Z_{m}}exp(-\alpha \_{m}y_{i}G_{m}(x_{i})),i=1,2,\cdots ,N $$
-$$Z_{m}=\sum_{i=1}^{N}w_{mi}exp(-\alpha _{m}y_{i}G_{m}(x_{i})).$$
-上面，$$Z_{m}$是规范化因子。
+$$Z_{m}=\sum_{i=1}^{N}w_{mi}exp(-\alpha \_{m}y_{i}G_{m}(x_{i})).$$
+上面，$$Z_{m}$是规范化因子，我们也可以通过以下步骤将其化简：
+$$Z_{m}=\sum_{i=1}^{N}w_{mi}exp(-\alpha _{m}y_{i}G_{m}(x_{i}))\\
+=\sum_{i=1}^{N}w_{mi}e^{-\alpha \_{m}}I(G_{m}(x_{i})= y_{i})+\sum_{i=1}^{N}w_{mi}e^{\alpha \_{m}}I(G_{m}(x_{i})\neq y_{i})\\
+=(1-e_{m})e^{-\alpha \_{m}}+e_{m}e^{\alpha \_{m}},$$
+又$$\alpha \_{m}=\frac{1}{2}log\frac{1-e_{m}}{e_{m}},$$代入上式化简后得到：
+$$Z_{m}=2\sqrt{e_{m}(1-e_{m})}$$
 
 + 步骤3：使用加权多数表决方法，得到基本分类器的线性组合：
 $$f(x)=\sum_{m=1}^{M}\alpha \_{m}G_{m}(x),$$
 于是，最终的分类器$G(x)$:
 $$G(x)=sign(f(x))=sign(\sum_{m=1}^{M}\alpha \_{m}G_{m}(x)).$$
+
+### 2.3 AdaBoost 算法的训练误差分析
++ 定理1 (AdaBoost 的训练误差界)AdaBoost 算法最终分类器的训练误差界为：
+$$\frac{1}{N}\sum_{i=1}^{N}I(G(x_{i})\neq y_{i})\leq \frac{1}{N}\sum_{i}exp(-y_{i}f(x_{i}))=\prod_{m}Z_{m}.$$
+**证明**：<br>
+上式前半部分：<br>
+当$G(x_{i})\neq y_{i}$时，$y_{i}f(x_{i})<0$,于是，$exp(-y_{i}f(x_{i}))\geq 1$.<br>
+上式后半部分：<br>
+
+
 
 
