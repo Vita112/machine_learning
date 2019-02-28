@@ -9,11 +9,11 @@
 ## 1 提升（boosting）方法
 ### 1.1 基本思路
    boosting方法在分类问题中，通过改变训练样本的权重，学习多个基本分类器，最后通过线性组合提高分类性能，得到最终分类器。首先引入两个概念：**strongly learnable**和**weakly learnable**，关于强可学习：a problem is learnable or strongly learnable if there exists an algorithm that outputs a learner *h* in polynomial time such that for all δ ＞0， ε≤0.5,
-$$ P(E_{x}\sim D(I(h(x)\neq f(x))) < \varepsilon ) \geqslant 1-\delta $$
+![strongly_learnable]()
 也就是说，存在一个多项式算法，能够有很大的把握得到一个误差很小的模型。关于弱可学习：一个概念，存在一个多项式的学习算法能够学习他，学习的正确率仅比随机猜测的稍好一些，称这个概念为弱可学习的。1990年，Schapire证明，在PAC学习的框架下，强可学习与弱可学习是可以等价的。在boosting方法中，需要解决2个问题：
  > ① *在每一轮，如何改变训练数据的权重分布；* <br>
- > ② *如何将弱分类器组合成一个强分类器。*
- 下面的adaboost方法较好的解决了这2个问题。
+ > ② *如何将弱分类器组合成一个强分类器。*<br>
+下面的adaboost方法较好的解决了这2个问题。
 ## 2 Adaboost 原理
 ### 2.1 什么是Adaboost？
 Adaboost，英文全称为‘Adapltive Boosting’(自适应增强)，是一种将弱学习器提升为强学习器的集成学习算法。它通过改变训练样本的权值，学习多个分类器，然后将分类器进行线性组合成强分类器。具体的，**改变训练数据的权重分布**：提高前一轮训练中被错误分类的数据的权值，降低正确分类数据的权值，使得被错误分类的数据在下一轮训练中更受关注；然后根据不同分布调弱学习算法得到一系列弱分类器；再**使用加权多数表决的方法，将弱分类器进行线性组合**，具体组合方法是：误差率小的分类器，增大其权值；误差率大的分类器，减小其权值。
@@ -45,8 +45,7 @@ $$ w_{m+1,i}=\frac{w_{mi}}{Z_{m}}exp(-\alpha \_{m}y_{i}G_{m}(x_{i})), i=1,2,\cdo
 $$Z_{m}=\sum_{i=1}^{N}w_{mi}exp(-\alpha \_{m}y_{i}G_{m}(x_{i})).$$
 上面，$Z_{m}$是规范化因子，我们也可以通过以下步骤将其化简：
 $$Z_{m}=\sum_{i=1}^{N}w_{mi}exp(-\alpha \_{m}y_{i}G_{m}(x_{i}))\\\\
-=\sum_{i=1}^{N}w_{mi}e^{-\alpha \_{m}}I(G_{m}(x_{i})\\\\
-= y_{i})+\sum_{i=1}^{N}w_{mi}e^{\alpha \_{m}}I(G_{m}(x_{i})\neq y_{i})\\\\
+=\sum_{i=1}^{N}w_{mi}e^{-\alpha \_{m}}I(G_{m}(x_{i})= y_{i})+\sum_{i=1}^{N}w_{mi}e^{\alpha \_{m}}I(G_{m}(x_{i})\neq y_{i})\\\\
 =(1-e_{m})e^{-\alpha \_{m}}+e_{m}e^{\alpha \_{m}},$$
 又
 $$\alpha \_{m}=\frac{1}{2}log\frac{1-e_{m}}{e_{m}},$$
@@ -89,7 +88,7 @@ $$min_{(\beta ,\gamma)}\sum_{i=1}^{N}L(y_{i},\beta b(x;\gamma))$$
 + 2. 对于m=1,2,……,M
 > a. 极小化损失函数
 $$(\beta \_{m},\gamma \_{m})=arg\ min_{(\beta ,\gamma )}\sum_{i=1}^{N}L(y_{i},f_{m-1}(x_{i})+\beta b(x_{i};\gamma ))$$
-得到参数$\beta \_{m},\gamma \_{m}).$
+得到参数$\beta \_{m},\gamma \_{m}).$<br>
 > b. 更新
 $$f_{m}(x)=f_{m-1}(x_{i})+\beta_{m} b(x_{i};\gamma_{m}).$$
 
@@ -113,7 +112,7 @@ $$(\alpha \_{m},G_{m}(x))=arg\ min_{(\alpha ,G)}\sum_{i=1}^{N}\bar{w_{mi}}exp\[-
 
 实际上，求最优的$G_{m}^{\*}$，就是AdaBoost算法的基本分类器，因为它是使得 第m轮加权训练数据分类误差最小的基本分类器。公式表示如下：
 $$G_{m}^{\*}(x)=arg\ min(G)\sum_{i=1}^{N}\bar{w_{mi}}I(y_{i}\neq G(x_{i})).$$
-+ 2. 求$\alpha \_{m}^{\*}$,即求 损失函数$L(y_{i},f(x_{i}))$对$\alpha \_{m}$的偏导数，并令其为零。数学推到步骤如下：
++ 2. 求$\alpha \_{m}^{\*}$, 即 求损失函数$L(y_{i},f(x_{i}))$对$\alpha \_{m}$的偏导数，并令其为零。首先给出指数损失函数如下：
 
 ![adaboost_Loss_function](https://github.com/Vita112/machine_learning/blob/master/img/adaboost_Loss_function.gif)
 
