@@ -37,23 +37,57 @@ $$\mathbf{\theta }^\mathrm{T}x^{(i)}\leq -1,\  if\  y^{(i)}=0.$$
 
 如果给定正则化项c非常大的值，SVM的决策边界(也可以理解为最大间隔分离超平面)将会拟合甚至那些异常值，导致产生过拟合问题。
 ### 1.3 mathematics behind large margin classification
-+ vector inner product
++ vector inner product向量内积(点乘)
+
+存在两个向量：u和v，有向量内积为：$\vec{u}\cdot \vec{v} = \left \| u \right \|\cdot \left \| v \right \|cos\angle (u,v)$. 可以看出向量内积的运算结果为一个实数，即一个标量。当两个向量非零且正交（夹角等于90°）时，向量的内积为0.|u·v|≤|u|·|v|，当夹角为0时等号成立。向量内积的几何意义：
+> 1. 表征或计算两个向量的夹角
+> 2. 向量v在向量u方向上的投影
 
 ![vector_inner_production](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/vector_inner_production.png)
 
-图中，|||u|表示向量的模长，p表示向量v在u上的投影。
+图中，||u||表示向量u 的模长，p表示向量v在u上的投影。
+> 延伸知识：向量外积(叉乘)
+
+向量叉乘定义：向量a和b的叉乘是一个向量，其长度|a×b|=|a||b|sin∠(a,b)，向量方向正交于a，b。在三维几何中，2个向量的外积结果又被称为**法向量**，其垂直于a和b构成的平面。在二维空间中，外积向量的长度|a×b|等于向量a和b所围平行四边形的面积。
+
 + SVM decision boundary
 
 ![SVM_decision_boundary](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/SVM_decision_boundary.png)
 
 > 从向量内积和向量模长的视角来看，SVM的优化问题可以写为：
+
 $$ min\ \frac{1}{2}\sum_{i=1}^{m}(\theta \_{j})^{2} = \frac{1}{2}\left \| \theta  \right \|^{2}, $$
 $$ s.t.\ \mathbf{\theta }^\mathrm{T}x^{(i)} = p^{(i)}\cdot \left \| \theta  \right \| \geq 1,\ if\  y^{(i)}=1,$$ 
 $$ \mathbf{\theta }^\mathrm{T}x^{(i)} = p^{(i)}\cdot \left \| \theta  \right \|\leq -1,\  if\  y^{(i)}=0.$$ 
 此处向量θ是垂直于决策边界的法向量。当y=1时，我们希望$ p^{(i)}\cdot \left \| \theta  \right \| \geq 1$，如果$ p^{(i)}$ 的值太小，意味着$\left \| \theta  \right \|$需要取较大的值，这不是我们的优化目标，因此上面的左图并不是我们的最优解；相反，右图得到较大的$ p^{(i)}$ ，相应的，我们可以得到较小的$\left \| \theta  \right \|$值。
 
-> 从最大几何间隔分离超平面的角度来看：首先超平面表示为$\mathbf{\theta }^\mathrm{T}x + b = 0$,其中 w 为垂直于超平面的法向量，箭头指向的一方为超平面的正方向，反之为负方向；b表示位移项，决定了超平面与原点之间的距离。于是我们有样本空间中任一点 x 到超平面(Θ，b)的距离可写为：
+> 从最大几何间隔分离超平面的角度来看：
 
+首先超平面表示为$\mathbf{\theta }^\mathrm{T}x + b = 0$,其中 w 为垂直于超平面的法向量，箭头指向的一方为超平面的正方向，反之为负方向；b表示位移项，决定了超平面与原点之间的距离，当b=0时，超平面经过原点。于是我们有样本空间中任一点 x 到超平面(Θ，b)的距离可写为：
+$$ r=\frac{\left \|  \mathbf{\theta }^\mathrm{T}x + b \right \|}{\left \| w \right \|}, $$
+结合上面的向量内积的视角，可以看到：分子是特征向量x与参数向量Θ的内积的绝对值，可写为：$\left \| \theta  \right \|\left \| x \right \|cos\angle (\theta ,x)$，分母为参数向量Θ的模长，所以，r其实就是p，即向量x在向量Θ
+上的投影。**间隔最大化 margin maximum**的思想是：存在超平面(Θ，b)能够将训练数据正确分开，即有
+$$ \left\{\begin{matrix}
+\mathbf{\theta }^\mathrm{T}x_{i}+b\geq +1,& y_{i}=+1;\\ 
+ \mathbf{\theta }^\mathrm{T}x_{i}+b\leq -1,& y_{i}=-1& 
+\end{matrix}\right. $$
+记上式为（式10.1）,。这里选择+1和-1是为了方便计算，因为不管取何值，最终都可以约为1.其中，距离超平面最近的几个训练样本使得等号成立，他们又被称为“支持向量（support vector）”。两个异类支持向量到超平面的距离之和（即为最大间隔）表示为：
+$$ r=\frac{2}{\left \| w \right \|}. $$
+上述公式由如下推导得出：
+设存在两个异类支持向量: $x_{1}$为正类, $x_{2$为负类。想要使得r最大，等价于使得下式最大：
+$$ r=\frac{\mathbf{\theta }^\mathrm{T}\cdot (x_{2}-x_{1})}{\left \| w \right \|} $$
+此式子又等价于：
+$$ r=\frac{1-b-(-1-b)}{\left \| w \right \|}=\frac{2}{\left \| w \right \|}. $$
+此处需要注意**存在一个约束条件：需要满足上述公式10.1，此公式可以简化为
+$y_{i}(\mathbf{\theta }^\mathrm{T}x_{i}+b)\geq +1$。**
+欲找到最大间隔分离超平面，即找到满足约束条件的参数Θ和b，使得r最大。公式描述如下：
+$$ max_{(\theta ,b)}\ \frac{2}{\left \| w \right \|}\\\\
+s.t.\ y_{i}(\mathbf{\theta }^\mathrm{T}x_{i}+b)\geq +1 $$
+上述公式等价于：
+$$ min_{(\theta ,b)}\ \frac{1}{2}\left \| w \right \|^{2}\\\\
+s.t.\ y_{i}(\mathbf{\theta }^\mathrm{T}x_{i}+b)\geq +1 $$
+
+以上即为**支持向量机(SVM)的基本型**。
 ## 2 Kernels
 ### 2.1 Kernels Ⅰ
 ### 2.2 Kernels Ⅱ
