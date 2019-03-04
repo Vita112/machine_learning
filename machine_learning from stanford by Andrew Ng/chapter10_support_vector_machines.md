@@ -70,7 +70,7 @@ $$ r=\frac{\left \|  \mathbf{\theta }^\mathrm{T}x + b \right \|}{\left \| w \rig
 $$ \left\{\begin{matrix}
 \mathbf{\theta }^\mathrm{T}x_{i}+b\geq +1,& y_{i}=+1;\\\\ 
 \mathbf{\theta }^\mathrm{T}x_{i}+b\leq -1,& y_{i}=-1& 
-\end{matrix}\right. $$
+\end{matrix}\right $$
 记上式为（式10.1）,。这里选择+1和-1是为了方便计算，因为不管取何值，最终都可以约为1.其中，距离超平面最近的几个训练样本使得等号成立，他们又被称为“支持向量（support vector）”。两个异类支持向量到超平面的距离之和（即为最大间隔）表示为：
 $$ r=\frac{2}{\left \| w \right \|}. $$
 上述公式由如下推导得出：
