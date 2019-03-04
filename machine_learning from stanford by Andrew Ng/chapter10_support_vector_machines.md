@@ -46,11 +46,14 @@ $$\mathbf{\theta }^\mathrm{T}x^{(i)}\leq -1,\  if\  y^{(i)}=0.$$
 
 ![SVM_decision_boundary](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/SVM_decision_boundary.png)
 
-从向量内积和向量模长的视角来看，SVM的优化问题可以写为：
+> 从向量内积和向量模长的视角来看，SVM的优化问题可以写为：
 $$ min\ \frac{1}{2}\sum_{i=1}^{m}(\theta \_{j})^{2} = \frac{1}{2}\left \| \theta  \right \|^{2}, $$
 $$ s.t.\ \mathbf{\theta }^\mathrm{T}x^{(i)} = p^{(i)}\cdot \left \| \theta  \right \| \geq 1,\ if\  y^{(i)}=1,$$ 
 $$ \mathbf{\theta }^\mathrm{T}x^{(i)} = p^{(i)}\cdot \left \| \theta  \right \|\leq -1,\  if\  y^{(i)}=0.$$ 
 此处向量θ是垂直于决策边界的法向量。当y=1时，我们希望$ p^{(i)}\cdot \left \| \theta  \right \| \geq 1$，如果$ p^{(i)}$ 的值太小，意味着$\left \| \theta  \right \|$需要取较大的值，这不是我们的优化目标，因此上面的左图并不是我们的最优解；相反，右图得到较大的$ p^{(i)}$ ，相应的，我们可以得到较小的$\left \| \theta  \right \|$值。
+
+> 从最大几何间隔分离超平面的角度来看：首先超平面表示为$\mathbf{\theta }^\mathrm{T}x + b = 0$,其中 w 为垂直于超平面的法向量，箭头指向的一方为超平面的正方向，反之为负方向；b表示位移项，决定了超平面与原点之间的距离。于是我们有样本空间中任一点 x 到超平面(Θ，b)的距离可写为：
+
 ## 2 Kernels
 ### 2.1 Kernels Ⅰ
 ### 2.2 Kernels Ⅱ
