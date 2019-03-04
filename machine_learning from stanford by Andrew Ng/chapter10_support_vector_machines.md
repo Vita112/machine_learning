@@ -67,10 +67,8 @@ $$ \mathbf{\theta }^\mathrm{T}x^{(i)} = p^{(i)}\cdot \left \| \theta  \right \|\
 $$ r=\frac{\left \|  \mathbf{\theta }^\mathrm{T}x + b \right \|}{\left \| w \right \|}, $$
 结合上面的向量内积的视角，可以看到：分子是特征向量x与参数向量Θ的内积的绝对值，可写为：$\left \| \theta  \right \|\left \| x \right \|cos\angle (\theta ,x)$，分母为参数向量Θ的模长，所以，r其实就是p，即向量x在向量Θ
 上的投影。**间隔最大化 margin maximum**的思想是：存在超平面(Θ，b)能够将训练数据正确分开，即有
-$$ \left\{\begin{matrix}
-\mathbf{\theta }^\mathrm{T}x_{i}+b\geq +1,& y_{i}=+1;\\\\ 
-\mathbf{\theta }^\mathrm{T}x_{i}+b\leq -1,& y_{i}=-1& 
-\end{matrix}\right $$
+![公式10.1](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/%E5%85%AC%E5%BC%8F10.1.gif)
+
 记上式为（式10.1）,。这里选择+1和-1是为了方便计算，因为不管取何值，最终都可以约为1.其中，距离超平面最近的几个训练样本使得等号成立，他们又被称为“支持向量（support vector）”。两个异类支持向量到超平面的距离之和（即为最大间隔）表示为：
 $$ r=\frac{2}{\left \| w \right \|}. $$
 上述公式由如下推导得出：
