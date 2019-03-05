@@ -105,24 +105,24 @@ $$ L(w,b,\alpha )=\frac{1}{2}\left \| \left \| w \right \|\right \|^{2}+\sum_{i=
 $$ min_{(w,b)}\ max_{(\alpha )}\ L(w,b,\alpha ), $$
 根据拉格朗日对偶性，**原始问题的对偶问题是极大极小问题**：
 $$ max_{(\alpha )}\ min_{(w,b )}\ L(w,b,\alpha ). $$
-`step 1:求 min L(w,b,α)`
+`step 1:求 min L(w,b,α)`<br>
 求L(w,b,α)关于w和b的偏导数，并令其为0，可得：
 $$ w = \sum_{i=1}^{m}\alpha \_{i}y_{i}x_{i}, $$
 $$ 0 = \sum_{i=1}^{m}\alpha \_{i}y_{i}. $$
 代入拉格朗日函数后消去w 和 b后，得到：
 $$ min_{(w,b )}\ L(w,b,\alpha )=-\frac{1}{2}\sum_{i=1}^{N}\sum_{j=1}^{N}\alpha \_{i}\alpha \_{j}y_{i}y_{j}(x_{i}\cdot x_{j})+\sum_{i=1}^{N}\alpha \_{i}. $$
 `step 2:求 min L(w,b,α)对 α 的极大，即是对偶问题：`
-$$ max_{(\alpha )}-\frac{1}{2}\sum_{i=1}^{N}\sum_{j=1}^{N}\alpha \_{i}\alpha \_{j}y_{i}y_{j}(x_{i}\cdot x_{j})+\sum_{i=1}^{N}\alpha \_{i}\\
+$$ max_{(\alpha )}-\frac{1}{2}\sum_{i=1}^{N}\sum_{j=1}^{N}\alpha \_{i}\alpha \_{j}y_{i}y_{j}(x_{i}\cdot x_{j})+\sum_{i=1}^{N}\alpha \_{i}\\\\
 s.t.\ \sum_{i=1}^{N}\alpha \_{i}y_{i}=0\\
 \alpha \_{i}\geq 0,i=1,2,\cdots ,N $$
 
 上述式子等价于：
-$$ min_{(\alpha )}\frac{1}{2}\sum_{i=1}^{N}\sum_{j=1}^{N}\alpha \_{i}\alpha _{j}y_{i}y_{j}(x_{i}\cdot x_{j})+\sum_{i=1}^{N}\alpha \_{i}\\
-s.t.\ \sum_{i=1}^{N}\alpha \_{i}y_{i}=0\\
+$$ min_{(\alpha )}\frac{1}{2}\sum_{i=1}^{N}\sum_{j=1}^{N}\alpha \_{i}\alpha \_{j}y_{i}y_{j}(x_{i}\cdot x_{j})+\sum_{i=1}^{N}\alpha \_{i}\\\\
+s.t.\ \sum_{i=1}^{N}\alpha \_{i}y_{i}=0\\\\
 \alpha \_{i}\geq 0,i=1,2,\cdots ,N $$
 上式记为（式10.3）,是对偶最优化问题。
 > c. 求解$ \alpha ^{\ast }, 
-\mathbf{\alpha ^{\ast }=(\alpha ^{\ast }\_{1},\alpha ^{\ast }\_{2},\cdots ,\alpha ^{\ast }\_{N}) }^\mathrm{T} $.
+\mathbf{\alpha ^{\ast }=(\alpha ^{\ast }\_{1},\alpha ^{\ast }\_{2},\cdots ,\alpha ^{\ast }\_{N}) }^\mathrm{T} $.<br>
 
 根据以下定理：<br>
 **考虑原始问题和对偶问题。假设函数f(x)和$ g_{i}(w) $是凸函数，$ h_{i}(w) $是仿射函数；并且假设不等式约束$ g_{i}(w) $是严格可行的，即存在w，对所有i有$ g_{i}(w) < 0 $,则存在 $ w^{\ast },\alpha ^{\ast },\beta ^{\ast } $,使得 $ w^{\ast } $ 是原始问题的解，$ \alpha ^{\ast },\beta ^{\ast } $是对偶问题的解。**<br>
@@ -131,7 +131,7 @@ $$ w^{\ast }=\sum_{i=1}^{N}\alpha \_{i}^{\ast }y_{i}x_{i}\\\\
 b^{\ast }=y_{j}-\sum_{i=1}^{N}\alpha \_{i}^{\ast }y_{i}(x_{i}\cdot x_{j)} $$
 **证明：**<br>
 根据定理：
->  $ w^{\ast },\alpha ^{\ast },\beta ^{\ast } $是原始问题和对偶问题的解 的充分必要条件是：$ w^{\ast },\alpha ^{\ast },\beta ^{\ast } $满足KKT(Karush-Kuhn-Tucher)条件:
+>  $ w^{\ast },\alpha ^{\ast },\beta ^{\ast } $是原始问题和对偶问题的解 的充分必要条件是：$ w^{\ast },\alpha ^{\ast },\beta ^{\ast } $满足KKT(Karush-Kuhn-Tucher)条件:<br>
 条件1～3：分别求 $ L(w^{\ast },\alpha ^{\ast },\beta ^{\ast })$ 对三个变量的偏导数，并令其为0；<br>
 条件4：$ \alpha ^{\ast }g_{i}(w^{\ast })=0 $<br>
 条件5：$ g_{i}(w^{\ast })\leq 0 $<br>
@@ -139,7 +139,16 @@ b^{\ast }=y_{j}-\sum_{i=1}^{N}\alpha \_{i}^{\ast }y_{i}(x_{i}\cdot x_{j)} $$
 条件7：$ h_{i}(w) = 0 $<br>
 根据条件3，有
 $$ \alpha ^{\ast }\_{i}(y_{i}(w^{\ast }\cdot x_{i}+b^{\ast })-1)=0 $$
-又$$ 
+又$\alpha ^{\ast }\_{i}\neq 0$ ,故有
+$$ y_{i}(w^{\ast }\cdot x_{i}+b^{\ast })-1=0 $$
+将$ w^{\ast }=\sum_{i=1}^{N}\alpha \_{i}^{\ast }y_{i}x_{i} $代入后，得到
+$$ b^{\ast }=y_{j}-\sum_{i=1}^{N}\alpha \_{i}^{\ast }y_{i}(x_{i}\cdot x_{j)} $$
+> d. 得到分离超平面如下：
+$$ \sum_{i=1}^{N}\alpha \_{i}^{\ast }y_{i}(x\cdot x_{i} )+b^{\ast }=0  $$
+以及分类决策函数：
+$$ f(x)=sign(\sum_{i=1}^{N}\alpha \_{i}^{\ast }y_{i}(x\cdot x_{i} )+b^{\ast }) $$
+
+**综上所述，对于给定的线性可分训练数据集，先求解对偶问题的$  \alpha ^{\ast } $；再根据KKT条件求得$ w^{\ast },b ^{\ast } $；从而得到分离超平面及分类决策函数。这种方法被称为线性可分支持向量机的对偶学习算法。**
 ## 2 Kernels
 ### 2.1 Kernels Ⅰ
 ### 2.2 Kernels Ⅱ
