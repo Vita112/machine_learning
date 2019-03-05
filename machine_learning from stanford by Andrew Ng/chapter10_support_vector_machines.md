@@ -37,7 +37,7 @@ $$\mathbf{\theta }^\mathrm{T}x^{(i)}\leq -1,\  if\  y^{(i)}=0.$$
 
 如果给定正则化项c非常大的值，SVM的决策边界(也可以理解为最大间隔分离超平面)将会拟合甚至那些异常值，导致产生过拟合问题。
 ### 1.3 mathematics behind large margin classification
-+ vector inner product向量内积(点乘)
++ 1.3.1 vector inner product向量内积(点乘)
 
 存在两个向量：u和v，有向量内积为：$\vec{u}\cdot \vec{v} = \left \| u \right \|\cdot \left \| v \right \|cos\angle (u,v)$. 可以看出向量内积的运算结果为一个实数，即一个标量。当两个向量非零且正交（夹角等于90°）时，向量的内积为0.|u·v|≤|u|·|v|，当夹角为0时等号成立。向量内积的几何意义：
 > 1. 表征或计算两个向量的夹角
@@ -50,7 +50,7 @@ $$\mathbf{\theta }^\mathrm{T}x^{(i)}\leq -1,\  if\  y^{(i)}=0.$$
 
 向量叉乘定义：向量a和b的叉乘是一个向量，其长度|a×b|=|a||b|sin∠(a,b)，向量方向正交于a，b。在三维几何中，2个向量的外积结果又被称为**法向量**，其垂直于a和b构成的平面。在二维空间中，外积向量的长度|a×b|等于向量a和b所围平行四边形的面积。
 
-+ SVM decision boundary
++ 1.3.2 SVM decision boundary
 
 ![SVM_decision_boundary](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/SVM_decision_boundary.png)
 
@@ -85,7 +85,26 @@ s.t.\ y_{i}(\mathbf{\theta }^\mathrm{T}x_{i}+b)\geq +1 $$
 $$ min_{(\theta ,b)}\ \frac{1}{2}\left \| w \right \|^{2}\\\\
 s.t.\ y_{i}(\mathbf{\theta }^\mathrm{T}x_{i}+b)\geq +1 $$
 
-以上即为**支持向量机(SVM)的基本型**。
+以上即为**支持向量机(SVM)的基本型**，为方便接下来的叙述，记为（式10.2）。
++ 1.3.3 原始问题的对偶化（dual problem）
+首先，**引入凸优化问题的概念**：凸优化问题也被称作 约束最优化问题，公式描述如下：
+$$ min_{w}\ f(w)\\\\
+s.t.\ g_{i}(w)\leq 0, i=1,2,\cdots ,k\\\\
+     h_{i}(w) = 0, i=1,2,\cdots ,k $$
+其中目标函数f(x)和约束函数 $ g_{i}(w) $ 都是 $ \Re ^{n} $ 上的连续可微的凸函数,约束函数 $ h_{i}(w) $ 是 $ \Re ^{n} $ 上的仿射函数（一阶多项式函数，形如a·x+b）。**当目标函数f（x）是二次函数且约束函数$ g_{i}(w) $是仿射函数时，上述凸最优化问题成为凸二次规划（convex quadratic programming）问题**。
+于是，上小节中的（式10.2）是一个凸二次规划问题，**应用拉格朗日对偶性，可以将原始问题对偶化，通过求解对偶问题得到原始问题的最优解**。
+> a. 构建拉格朗日函数，**使约束最优化问题变为无约束最优化问题**
+
+为原始问题中的每一个约束条件引进拉格朗日乘子（ Lagrange multiplier），记为 $ \alpha \_{i}\geq 0 $, $ \alpha =(\alpha \_{1},\alpha \_{2},\cdots ,\alpha \_{m}), $  得到拉格朗日函数为：
+$$ L(w,b,\alpha )=\frac{1}{2}\left \| \left \| w \right \|\right \|^{2}+\sum_{i=1}^{m}\alpha \_{i}(1-y_{i}(\mathbf{ w }^\mathrm{T}x_{i}+b)) =\frac{1}{2}\left \| \left \| w \right \|\right \|^{2}-\sum_{i=1}^{m}\alpha \_{i}y_{i}(\mathbf{ w }^\mathrm{T}x_{i}+b)+\sum_{i=1}^{m}\alpha \_{i}. $$
+
+> **原始无约束最优化问题 → 对偶问题**
+
+根据拉格朗日对偶性，**原始问题的对偶问题是极大极小问题**：
+求L(w,b,α)关于w和b的偏导数，并令其为0，可得：
+$$ w = \sum_{i=1}^{m}\alpha \_{i}y_{i}x_{i}, $$
+$$ 0 = \sum_{i=1}^{m}\alpha \_{i}y_{i}. $$
+代入拉格朗日函数后消去w 和 b后，
 ## 2 Kernels
 ### 2.1 Kernels Ⅰ
 ### 2.2 Kernels Ⅱ
