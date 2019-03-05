@@ -136,7 +136,8 @@ b^{\ast }=y_{j}-\sum_{i=1}^{N}\alpha \_{i}^{\ast }y_{i}(x_{i}\cdot x_{j)} $$
 条件4：$ \alpha ^{\ast }g_{i}(w^{\ast })=0 $<br>
 条件5：$ g_{i}(w^{\ast })\leq 0 $<br>
 条件6：$ \alpha ^{\ast }\geq 0 $<br>
-条件7：$ h_{i}(w) = 0 $<br>
+条件7：$ h_{i}(w) = 0 $
+
 根据条件3，有
 $$ \alpha ^{\ast }\_{i}(y_{i}(w^{\ast }\cdot x_{i}+b^{\ast })-1)=0 $$
 又$\alpha ^{\ast }\_{i}\neq 0$ ,故有
