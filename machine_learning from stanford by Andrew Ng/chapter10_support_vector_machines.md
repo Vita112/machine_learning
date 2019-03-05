@@ -153,8 +153,41 @@ $$ f(x)=sign(\sum_{i=1}^{N}\alpha \_{i}^{\ast }y_{i}(x\cdot x_{i} )+b^{\ast }) $
 
 **综上所述，对于给定的线性可分训练数据集，先求解对偶问题的$  \alpha ^{\ast } $；再根据KKT条件求得$ w^{\ast },b ^{\ast } $；从而得到分离超平面及分类决策函数。这种方法被称为线性可分支持向量机的对偶学习算法。**
 ## 2 Kernels
+使用核函数（kernels）构造复杂的非线性分类器.
 ### 2.1 Kernels Ⅰ
+在之前的学习中我们知道，可以构建多项式特征变量假设：当多项式≥0时，假设结果为1；否则为0.由于使用高阶多项式时，计算量将非常大。因此我们考虑**是否存在一种方法，找到一个更好的特征变量 来代替这些高阶多项式**。
++ kernel
+
+given x，compute new feature $ f_{i} $ depending on proximity to landmarks $ l^{(1)},l^{(2)},l^{(3)} $<br>
+具体地，得到以下新的特征：<br>
+$$ f_{1}=similarity(x,l^{(1)})=exp(-\frac{\left \| \left \| x-l^{(1)} \right \|\right \|^{2} }{2\sigma ^{2}}) $$
+$$ f_{2}=similarity(x,l^{(2)})=exp(-\frac{\left \| \left \| x-l^{(2)} \right \|\right \|^{2} }{2\sigma ^{2}}) $$
+$ f_{2} $ 同上，每一个landmark $ l^{(i)} $ 定义一个新的特征变量  $ f_{i} $ 。<br>
+这里的相似函数就是核函数，记作k(x,$ l^{(1)} $). 核函数有很多种，本例中使用的是 高斯核函数。
++ kernels 如何发生作用?(kernels and similarity)
+
+定义新的特征：
+$$ f_{i}=similarity(x,l^{(i)})=exp(-\frac{\left \| \left \| x-l^{(i)} \right \|\right \|^{2} }{2\sigma ^{2}}) $$
+如果x和l十分相似，即距离很近( $ x_{i}\approx l^{(i)} $), 有 $ \left \| \left \| x_{i}-l^{(i)} \right \|\right \|^{2} \approx 0 $,此时，$ f_{i} \approx 1 $
+反之，当具体很远时，$f_{i} \approx 0 $.接下来，我们观察：在高斯核函数中，$ \sigma ^{2} $的值如何影响 相似度$ f_{i} $ 与 x和l间距 之间的关系。
+
+![an_example_for_Gaussian_kernel_function_with_different_σ]()
+
+上图显示了：当$ \sigma ^{2} $的值越小，fi 对 (x和l的距离) 的敏感程度更高；反之，当$ \sigma ^{2} $的值越大，fi 对 (x和l的距离) 的敏感程度更低。
 ### 2.2 Kernels Ⅱ
+用 线性分类方法 求解 非线性分类问题 分为2步：1. 使用一个变化，将输入空间的数据映射到新空间，称为特征空间；2. 在新空间中，使用线性分类学习方法从训练数据中学习分类模型。
++ 核函数定义
+
+设 X 为输入空间，H 为特征空间，若存在一个从 X 到 H 的映射
+$$ \varphi (x):X\rightarrow H $$
+使得对所有x,z ∈ X，函数 K(x, z)满足条件
+$$ K(x,z)=\varphi (x)\cdot \varphi (z) $$
+则称 K(x, z)为核函数，$ \varphi (x) $ 为映射函数。在本例中，通过指数高斯函数计算 输入数据x与其自身的相似度，即得到fi。具体的，
+![the_mapping_of_input_x_in_new_space.]()
+图中，通过映射变换，我们得到$ x^{(i)}\rightarrow f^{(i)} $
++ SVM with Kernels 
+
+![SVM_with_kernels]()
 ## 3 SVMs in practice - using an SVM 
 
 
