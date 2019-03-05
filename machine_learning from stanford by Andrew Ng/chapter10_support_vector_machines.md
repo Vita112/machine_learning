@@ -143,7 +143,9 @@ $$ \alpha ^{\ast }\_{i}(y_{i}(w^{\ast }\cdot x_{i}+b^{\ast })-1)=0 $$
 $$ y_{i}(w^{\ast }\cdot x_{i}+b^{\ast })-1=0 $$
 将$ w^{\ast }=\sum_{i=1}^{N}\alpha \_{i}^{\ast }y_{i}x_{i} $代入后，得到
 $$ b^{\ast }=y_{j}-\sum_{i=1}^{N}\alpha \_{i}^{\ast }y_{i}(x_{i}\cdot x_{j)} $$
+
 > d. 得到分离超平面如下：
+
 $$ \sum_{i=1}^{N}\alpha \_{i}^{\ast }y_{i}(x\cdot x_{i} )+b^{\ast }=0  $$
 以及分类决策函数：
 $$ f(x)=sign(\sum_{i=1}^{N}\alpha \_{i}^{\ast }y_{i}(x\cdot x_{i} )+b^{\ast }) $$
