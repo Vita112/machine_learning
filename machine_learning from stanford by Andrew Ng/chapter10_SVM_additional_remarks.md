@@ -6,12 +6,12 @@ logistic regression 是一个0/1分类模型，它将输入特征的线性组合
 + linear classifier
 
 我们对上述logistic regression中特征组合做一些变形，即令$ \mathbf{\theta }^\mathrm{T}x=\mathbf{w }^\mathrm{T}x+b,y\in {-1,+1} $，得到线性分类函数如下：
-![linear_classifier]()
+![linear_classifier](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/linear_classifier.gif)
 ## 2 how to get SVM
 SVM，通俗来讲是一种二分来模型，其基本模型定义为特征空间上的间隔最大的线性分类器，其学习策略是间隔最大化，最终可转化为凸二次规划问题的求解。
 ### 2.1　optimal hyper plane
 定义超平面为：$$ f(x)=\mathbf{w }^\mathrm{T}x+b $$.关于超平面的直观理解是：它将特征空间中的数据点分为2类，当f(x)＞0时，点x在超平面的一侧，对应的y是1；当f(x)＜0时，点x在超平面的另一侧，对应的y是-1；位于超平面上的点x，有f(x)=0.<br>
-**我们的问题是：如何确定最优超平面，即如何找到距离两边的数据的间隔最大的超平面？**为此，以下先导入functional margin 和 geometrical margin的概念。
+**我们的问题是：如何确定最优超平面，即如何找到距离两边的数据的间隔最大的超平面**?为此，以下先导入functional margin 和 geometrical margin的概念。
 ### 2.2 functional margin and geometrical margin
 + functional margin
 
@@ -28,7 +28,7 @@ $$ \hat{ \gamma }=min\hat{\gamma}\_{i} $$
 
 引子：<br>
 假定对于一个点 x ，令其垂直投影到超平面上的对应点为 x0 ，w 是垂直于超平面的一个向量，为样本x到超平面的距离，如下图所示：
-![to_deduce_geometrical margin]()
+![to_deduce_geometrical margin](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/img/to_deduce_geometrical%20margin.jpg)
 根据平面几何知识，我们有：
 $$ x=x_{0}+\gamma \frac{w}{\left \| \left \| w \right \| \right \|} $$
 推导后，得到
