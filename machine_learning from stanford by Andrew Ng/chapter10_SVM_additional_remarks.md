@@ -52,7 +52,7 @@ $$ \ y_{i}(\mathbf{ w }^\mathrm{T}x_{i}+b)= 1 $$
 对于所有不是支持向量的点，则显然有
 $$ \ y_{i}(\mathbf{ w }^\mathrm{T}x_{i}+b)> 1 $$
 ## 3 linearly separable problem
-**for this section ,pls refer to \[1.3 mathematics behind large margin classification] in [chapter10_support_vector_machines](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/chapter10_support_vector_machines.md)
+for this section ,pls refer to **\[1.3 mathematics behind large margin classification]** in [chapter10_support_vector_machines](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/chapter10_support_vector_machines.md)
 ### 3.1 from primitive problem to dual problem
 ### 3.2 KKT conditions
 ### 3.3 3 steps to solve a dual problem
