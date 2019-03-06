@@ -41,11 +41,23 @@ $$ \tilde{\gamma }=min\tilde{\gamma}\_{i} $$
 $$ \tilde{\gamma }=\frac{\hat{\gamma }}{\left \| \left \| w \right \| \right \|} $$
 $$ y_{i}f(x)=\left | f(x) \right |=\left | \mathbf{w }^\mathrm{T}x+b \right | $$
 ### 2.3 maximum margin classifier
+有了上述函数间隔和几何间隔的知识，我们**定义最大间隔分类器的目标函数如下**：
+$$ max_{(w ,b)}\ \tilde{\gamma }\\\\
+s.t.\ y_{i}(\mathbf{ w }^\mathrm{T}x_{i}+b)=\hat{\gamma \_{i}}\geq \hat{\gamma } $$
+为方便推到和优化计算，此处我们取函数间隔$\hat{\gamma }=1 $，于是得到得到：
+$$  max_{(w ,b)}\ \frac{1}{\left \| \left \| w \right \| \right \|}\\\\
+s.t.\ y_{i}(\mathbf{ w }^\mathrm{T}x_{i}+b)\geq 1 $$
+**问题转化为**在满足相应的约束条件下，求解最大的几何间隔$ \tilde{\gamma } $.**结合图形理解的话**：$ \tilde{\gamma } $为分离超平面到支持向量所在超平面的距离，支持向量满足
+$$ \ y_{i}(\mathbf{ w }^\mathrm{T}x_{i}+b)= 1 $$
+对于所有不是支持向量的点，则显然有
+$$ \ y_{i}(\mathbf{ w }^\mathrm{T}x_{i}+b)> 1 $$
 ## 3 linearly separable problem
+**for this section ,pls refer to \[1.3 mathematics behind large margin classification] in [chapter10_support_vector_machines](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/chapter10_support_vector_machines.md)
 ### 3.1 from primitive problem to dual problem
 ### 3.2 KKT conditions
 ### 3.3 3 steps to solve a dual problem
 ## 4 linearly non-separable problem
+
 ### 4.1 what is Kernel function?
 ### 4.2 several kinds of common Kernel Function
 ### 4.3 the essence of Kernel Function
@@ -53,4 +65,4 @@ $$ y_{i}f(x)=\left | f(x) \right |=\left | \mathbf{w }^\mathrm{T}x+b \right | $$
 
 
 reference：<BR>
-[CSDN:支持向量机通俗导论（理解SVM的三层境界）](https://blog.csdn.net/v_july_v/article/details/7624837)
++ [CSDN:支持向量机通俗导论（理解SVM的三层境界）](https://blog.csdn.net/v_july_v/article/details/7624837)
