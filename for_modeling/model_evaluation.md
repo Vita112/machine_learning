@@ -1,4 +1,4 @@
-### model evaluation
+
 假设 测试样本是从样本真实分布中独立同分布采样而得。数据集划分过程尽可能保持数据分布的一致性，从采样角度看，保留类别比例的采样方法
 称为**分层采样(stratified sampling)**.)
 
@@ -27,4 +27,4 @@ $$ \lim_{m \mapsto  \infty }(1-\frac{1}{m})^{m}\rightarrow \frac{1}{e}\approx 0.
 
 booststramping在数据集较小、难以有效划分训练/测试集时很有用。
 
-
+### 2. 
