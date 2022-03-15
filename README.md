@@ -1,5 +1,5 @@
 # machine_learning
-## machine_learning from stanford by Andrew Ng
+## 1. machine_learning from stanford by Andrew Ng
 
 link:https://www.coursera.org/learn/machine-learning/
     
@@ -12,3 +12,15 @@ link:https://www.coursera.org/learn/machine-learning/
 * [chapter07_Neural_networks_Learning](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/chapter07_Neural_networks_Learning.md)
 * [chapter10_support_vector_machines](https://github.com/Vita112/machine_learning/blob/master/machine_learning%20from%20stanford%20by%20Andrew%20Ng/chapter10_support_vector_machines.md)
 
+
+## 2. Machine Learning by Zhihua Zhou("西瓜书")
+* [chapter01—Introduction]()
+* [chapter02—Model Evauation and Selection]()
+* [chapter03-Linear Model]()
+* [chapter04-Decision Tree]()
+* [chapter05-Neural Network]()
+* [chapter06-Support Vector-Machine]()
+* [chapter07-Bayes Classifier]()
+* [chapter08-Ensemble Learning]()
+* [chapter09-Clustering]()
+* [chapter10-]()
