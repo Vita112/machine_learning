@@ -11,4 +11,4 @@
 
 **标记(label)**: 关于示例结果的信息，比如一个瓜是好还是坏。*拥有了标记信息的示例，称为样例(example)*.
 
-++sample != example++
+==sample != example==
