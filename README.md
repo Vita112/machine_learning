@@ -14,13 +14,4 @@ link:https://www.coursera.org/learn/machine-learning/
 
 
 ## 2. Machine Learning by Zhihua Zhou("西瓜书")
-* [chapter01—Introduction]()
-* [chapter02—Model Evauation and Selection]()
-* [chapter03-Linear Model]()
-* [chapter04-Decision Tree]()
-* [chapter05-Neural Network]()
-* [chapter06-Support Vector-Machine]()
-* [chapter07-Bayes Classifier]()
-* [chapter08-Ensemble Learning]()
-* [chapter09-Clustering]()
-* [chapter10-]()
+* [第2-7章，参考CSDN Blogs](https://blog.csdn.net/wayaya112?type=blog)
